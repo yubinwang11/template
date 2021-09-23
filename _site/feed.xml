@@ -1,0 +1,1624 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-20T03:54:44-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yubin Wang</title><subtitle>Visiting Student in Electrical and Computer Engineering</subtitle><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><entry><title type="html">TOEFL Intergrated Writing Template</title><link href="http://localhost:4000/posts/2020/10/jeykll-footnotes" rel="alternate" type="text/html" title="TOEFL Intergrated Writing Template" /><published>2021-09-13T00:00:00-05:00</published><updated>2021-09-13T00:00:00-05:00</updated><id>http://localhost:4000/posts/2020/10/toefl-writing-template</id><content type="html" xml:base="http://localhost:4000/posts/2020/10/jeykll-footnotes">&lt;p&gt;This article is my personal template sorted out for TOEFL intergrated writing according to the standard guidance of Teacher Li. Please take it away if helpful :)
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;The full template is as following.&lt;/p&gt;
+
+&lt;p&gt;The reading and the lecture hold opposite views concerning whether + topic.&lt;/p&gt;
+
+&lt;p&gt;The reading conveys that reading’s opinion . The lecture, however, contradicts what the reading states.&lt;/p&gt;
+
+&lt;p&gt;First, the reading indicates that aspect A + details. On the contrary, the lecture argues that contray A. The lecture advances the theory by saying that + details.&lt;/p&gt;
+
+&lt;p&gt;Second, the reading suggests that Aspect B + details. Oppositely, the lecture points out that contrary B. In detail, she/ he points out that + details.&lt;/p&gt;
+
+&lt;p&gt;Third, the reading expresses that Aspect C + details. In sharp contrast, the lecture refutes the reading by saying that contrary C. To explore deeper, the lecture contends that + details.&lt;/p&gt;
+
+&lt;p&gt;An apparent divide exists between the reading and the lecture on summary.&lt;/p&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="TOEFL" /><summary type="html">This article is my personal template sorted out for TOEFL intergrated writing according to the standard guidance of Teacher Li. Please take it away if helpful :)</summary></entry><entry><title type="html">Brief Report of Learning-Based Observer</title><link href="http://localhost:4000/posts/2021/09/learn-obs" rel="alternate" type="text/html" title="Brief Report of Learning-Based Observer" /><published>2021-09-12T00:00:00-05:00</published><updated>2021-09-12T00:00:00-05:00</updated><id>http://localhost:4000/posts/2021/09/learn-obs</id><content type="html" xml:base="http://localhost:4000/posts/2021/09/learn-obs">&lt;p&gt;This report serves as my group meeting materials at EMANG in August,27. This article is about using the end-to-end approach of Deep Learning to compute the transformation which is incredibly essential for KKL observer. For simple, this article dives into this field through the aspect of autonomous systems and then the work is extended to non-autonomous systems with an excitation.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h1 id=&quot;problem-statement&quot;&gt;Problem Statement&lt;/h1&gt;
+
+&lt;p&gt;nonlinear discrete-time systems of general form:&lt;/p&gt;
+
+\[\left\{\begin{array}{l}
+x_{k+1}=F\left(x_{k}, u_{k}\right) \\
+y_{k}=h\left(x_{k}\right)
+\end{array}\right.
+\tag{1}\]
+
+&lt;h2 id=&quot;assumption&quot;&gt;Assumption&lt;/h2&gt;
+
+&lt;h3 id=&quot;assumption-1&quot;&gt;Assumption 1&lt;/h3&gt;
+
+&lt;p&gt;$F$ is invertible and $F^{-1}$ and $h$ are of class $C^1$ and globally Lipschitz. For all non-negative integers $i$ we denote $◦$  the composition operator and&lt;/p&gt;
+
+\[F^{i}=\underbrace{F \circ F \circ \cdots \circ F}_{i \text { times }}, \quad F^{-i}=\left(F^{-1}\right)^{i} \tag{2}\]
+
+&lt;h3 id=&quot;assumption-2&quot;&gt;Assumption 2&lt;/h3&gt;
+
+&lt;p&gt;For all $(x_1, x_2) ∈ χ^2$ of nonlinear systems with input $u$, if $x_1 ≠x_2$, then there exists a positive integer $i$ such that $h(F^{−i} (x_1)) ≠ h(F^{−i} (x_2))$. This means that for any input $u$ of interest, there exists an open bounded set $\mathcal{O}$ containing χ such that nonlinear system is backward.&lt;/p&gt;
+
+&lt;h1 id=&quot;preliminaries-of-relevant-mapping-and-observer&quot;&gt;Preliminaries of Relevant Mapping and Observer&lt;/h1&gt;
+
+&lt;p&gt;For autonomous systems:&lt;/p&gt;
+
+\[\left\{\begin{array}{l}
+x_{k+1}=F\left(x_{k}, 0\right) \\
+y_{k}=h\left(x_{k}\right)
+\end{array}\right. \tag{3}\]
+
+&lt;p&gt;with the Luenberger-like methodology holding the two traditional assumption.&lt;/p&gt;
+
+&lt;p&gt;For almost any controllable pair $(A, B)$ of dimension $d_z:= d_y (d_x + 1)$ with $A$ Hurwitz there exists a map $T: \mathcal{X} \rightarrow \mathbb{R}^{d_{z}}$ that satisfies:&lt;/p&gt;
+
+&lt;p&gt;\(T(F(x))=A T(x)+B h(x) \quad \forall x \in \mathcal{X}
+\tag{4}\)
+a pseudo-inverse $T ^{−1}$ such that the following system is an observer for autonomous system&lt;/p&gt;
+
+\[\begin{aligned}
+z_{k+1} &amp;amp;=A z_{k}+B y_{k} \\
+\hat{x}_{k} &amp;amp;=T^{-1}\left(z_{k}\right)
+\end{aligned}
+\tag{5}\]
+
+&lt;p&gt;The unique solution of the map is given by&lt;/p&gt;
+
+\[T(x)=\sum_{i=0}^{+\infty} A^{i} B h\left(F^{-(i+1)}(x)\right)
+\tag{6}\]
+
+&lt;h2 id=&quot;theorem&quot;&gt;Theorem&lt;/h2&gt;
+
+&lt;p&gt;Assume that assumptions hold for autonomous system and let $d_z = d_y (d_x + 1)$. Then, for any matrix $A = Diag (λ_1, . . . , λ_{d_z }) ∈ \mathbb{R}^ {d_z×d_z} $ with eigenvalues $ (λ1, . . . , λ^{d_z} )$ and $ ρ(A) &amp;lt; 1 $ and $B$ the vector $(1, \ldots, 1)^{\top}$in $\mathbb{R}^{d_x}$ .&lt;/p&gt;
+
+&lt;p&gt;There exists an injective mapping $T : X → \mathbb{R} ^{dz}$ and a left inverse  $T^{−1}$ such that the trajectories remaining in $\mathcal{X}$ and the trajectories of observer dynamics satisfy&lt;/p&gt;
+
+\[\begin{array}{l}
+\lim _{k \rightarrow+\infty}\left|T\left(X_{k}\left(x_{0}\right)\right)-Z_{k}\left(x_{0}, z_{0}\right)\right|=0 \\
+\lim _{k \rightarrow+\infty}\left|X_{k}\left(x_{0}\right)-T^{-1}\left(Z_{k}\left(x_{0}, z_{0}\right)\right)\right|=0
+\end{array}   \tag{7}\]
+
+&lt;h2 id=&quot;kkl-observer&quot;&gt;KKL Observer&lt;/h2&gt;
+
+&lt;p&gt;design a KKL observer to online estimate $x_k$ from the knowledge of a sequence of the past and current values of the output $y_k$ and input $u_k$.&lt;/p&gt;
+
+&lt;h2 id=&quot;traditional-ansatz&quot;&gt;Traditional Ansatz&lt;/h2&gt;
+
+&lt;p&gt;An injective and continuous map $T$ which transforms the target system into a Hurwitz form exists.  Then, thanks to the contraction properties, the implementation of this new dynamic with any initial condition then provides an asymptotically convergent estimate of $T(X(x_0, u))$. Since $T$ is injective, an estimate of the solution $X(x_0, u)$can be obtained.&lt;/p&gt;
+
+&lt;h2 id=&quot;objective&quot;&gt;Objective&lt;/h2&gt;
+
+&lt;p&gt;However, even if sufficient conditions for the existence of this map have been given for a general form of nonlinear continuous systems, and consequently of the observer, a computable solution is unfortunately often difficult or impossible to obtain.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, in most situations the function $T$ given by the unique solution is difficult to compute and an explicit expression for its pseudo inverse is rarely available. Therefore,  the object is  to develop an algorithm to numerically identify these mappings.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-choose-the-learning-based-techniques&quot;&gt;Why choose the learning-based techniques&lt;/h2&gt;
+
+&lt;p&gt;Deep neural network architectures have shown to be able to learn non-linear mappings and to generalize to unseen data under certain conditions for a diverse range of problems. Different variants of the universal approximation theorem guarantee that a multi layer perceptron can express any arbitrary function, including our desired mappings, under mild conditions either for infinitely wide or infinitely deep (i.e layered)  model architectures.&lt;/p&gt;
+
+&lt;h1 id=&quot;deep-learning-based-observer-design&quot;&gt;Deep Learning-Based Observer Design&lt;/h1&gt;
+
+&lt;p&gt;This section proposes a constructive method to learn the mappings $T$ and $T^{−1}$ from data using unsupervised  learning.&lt;/p&gt;
+
+&lt;h2 id=&quot;model-structure&quot;&gt;Model Structure&lt;/h2&gt;
+
+&lt;p&gt;The network architecture of proposed model is shown.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Model Structure.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mapping-process&quot;&gt;Mapping Process&lt;/h3&gt;
+
+&lt;p&gt;Identify a latent space $z = T(x)$, which respects the observer dynamics given by the mapping.
+enforced dynamic using the following loss:&lt;/p&gt;
+
+\[\mathcal{L}_{d y n}=\left\|T\left(x_{k+1}\right)-\left(A T\left(x_{k}\right)+B h\left(x_{k}\right)\right)\right\|
+\tag{8}\]
+
+&lt;h3 id=&quot;recovery-process&quot;&gt;Recovery Process&lt;/h3&gt;
+
+&lt;p&gt;Seek to learn the pseudo-inverse $T ^{−1}$ so that an estimation $\hat{x}$ of the state is be recovered, which is achieved using an reconstruction loss of the auto-encoder, where $T$ is the encoder and $T ^{−1}$ is the decoder:&lt;/p&gt;
+
+\[\mathcal{L}_{\text {recon }}=\left\|x_{k}-T^{-1}\left(T\left(x_{k}\right)\right)\right\| 
+\tag{9}\]
+
+&lt;h2 id=&quot;training&quot;&gt;Training&lt;/h2&gt;
+
+&lt;p&gt;Train the model by minimizing two loss functions on a large dataset $D=\left{x_{k}, x_{k+1}\right}$, which is generated automatically from the considered systems. To allow a proper exploration of the state space, samples $x_k$ are obtained from a uniform random distribution on $\mathcal{X}$ while samples $x_{k+1}$ are obtained by applying the model dynamic.&lt;/p&gt;
+
+&lt;p&gt;A difficulty arising with the chosen learning scheme is that the values of the latent representation $z = T(x)$ in losses are not part of the dataset $D$. It is therefore not possible to scale them, which is an important step in machine learning ensuring that neural networks operate in a favorable regime of their point-wise non-linearities.&lt;/p&gt;
+
+&lt;h3 id=&quot;extended-mapping-capability&quot;&gt;Extended Mapping Capability&lt;/h3&gt;
+
+&lt;p&gt;To cope with the below proble, $z$ can be scaled during the learning phase by adapting $B$. Taking  $\tilde{B}=\operatorname{diag}\left(\left[b_{1}, b_{2}, \ldots\right]\right) B$ and the scaled $T$ can be described as&lt;/p&gt;
+
+\[\begin{aligned}
+\tilde{T}(x) &amp;amp;=\sum_{i=0}^{+\infty} A^{i} \operatorname{diag}\left(\left[b_{1}, b_{2}, \ldots\right]\right) B h\left(f^{-(i+1)}(x)\right) \\
+&amp;amp;=\operatorname{diag}\left(\left[b_{1}, b_{2}, \ldots\right]\right) T(x)
+\end{aligned}
+\tag{10}\]
+
+&lt;h3 id=&quot;algorithm&quot;&gt;Algorithm&lt;/h3&gt;
+
+&lt;p&gt;Pseudo code of this kind of algorithm is shown as following.&lt;/p&gt;
+
+&lt;p&gt;Notice that $B$ is iteratively adapted to standardize $z$ with respect to its standard deviation.
+&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Algorithm.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;non-autonomous-systems&quot;&gt;Non-Autonomous Systems&lt;/h2&gt;
+
+&lt;p&gt;To generalize this estimation method, this section consider generalizing this implementation to non-autonomous systems with strict conditions of control input.&lt;/p&gt;
+
+&lt;p&gt;Assume target system is standard nonlinear system with input,  and $u^0$ a constant input. In this case, two assumptions hold. From Theorem mentioned there exists a map $T$ solution to&lt;/p&gt;
+
+\[T\left(F\left(x_{k}, u^{0}\right)\right)=A T\left(x_{k}\right)+B y_{k}
+\tag{11}\]
+
+&lt;p&gt;when adding mapping $T\left(F\left(x_{k}, u_{k}\right)\right)$ to each side, the equation becomes&lt;/p&gt;
+
+&lt;p&gt;\(T\left(F\left(x_{k}, u_{k}\right)\right)=A T\left(x_{k}\right)+B y_{k}+T\left(F\left(x_{k}, u_{k}\right)\right)-T\left(F\left(x_{k}, u^{0}\right)\right)
+\tag{12}\)
+Hence, the latent state \(z_{k}=T\left(x_{k}\right)\) evolves according to observer dynamics&lt;/p&gt;
+
+&lt;p&gt;\(z_{k+1}=A z_{k}+B y_{k}+\Psi\left(z_{k}, u_{k}\right)
+\tag{13}\)
+where&lt;/p&gt;
+
+\[\Psi\left(z_{k}, u_{k}\right)=T\left(F\left(T^{-1}\left(z_{k}\right), u_{k}\right)\right)-T\left(F\left(T^{-1}\left(z_{k}\right), u^{0}\right)\right)
+\tag{14}\]
+
+&lt;p&gt;Note that, in the autonomous case, the term $Ψ(z_k, u_k)$ does not appear, the dynamics of z were contracting and it was enough to asymptotically simulate z with any initial condition.&lt;/p&gt;
+
+&lt;h3 id=&quot;note&quot;&gt;Note&lt;/h3&gt;
+
+&lt;p&gt;Unfortunately this is no longer true for non-autonomous systems, and this condition would be hard to cope with.&lt;/p&gt;
+
+&lt;p&gt;But the following method gives us a way.&lt;/p&gt;
+
+&lt;p&gt;Let $u_0$ be a constant input such that assumptions hold. Assume that $A$ can be designed such that $T, T _{−1}$ given by Theorem satisfy&lt;/p&gt;
+
+\[\left|\Psi\left(z^{1}, u\right)-\Psi\left(z^{2}, u\right)\right| \leq C_{u}\left|z^{1}-z^{2}\right|
+\tag{15}\]
+
+&lt;p&gt;for all $u \in \mathcal{U}$ and for all $z_1 , z_2$. Then for $u$ such that $ρ(A + CuI) &amp;lt; 1$ , we get that any solution verifies&lt;/p&gt;
+
+\[\lim _{k \rightarrow+\infty}\left|x_{k}-T^{-1}\left(z_{k}\right)\right|=0
+\tag{16}\]
+
+&lt;h3 id=&quot;proof&quot;&gt;Proof&lt;/h3&gt;
+
+&lt;p&gt;To take a step further, let denote by $e_k$ the estimation error $e_{k+1} = z_{k+1} − T(x_{k+1})$. $T$ being injective it is sufficient to prove that $e_{k+1} = z_{k+1} − T(x_{k+1})$ converges geometrically towards zero.&lt;/p&gt;
+
+&lt;p&gt;\(\begin{aligned}
+e_{k+1} &amp;amp;=z_{k+1}-T\left(F\left(x_{k}, u_{k}\right)\right.\\
+&amp;amp;=A\left(z_{k}-T\left(x_{k}\right)\right)+\Psi\left(z_{k}, u_{k}\right)-\Psi\left(T\left(x_{k}\right), u_{k}\right)
+\end{aligned}
+\tag{17}\)
+Assuming that&lt;/p&gt;
+
+&lt;p&gt;$Ψ(z_k, u_k)$ is Lipschitz&lt;/p&gt;
+
+&lt;p&gt;$u_k − u_0$ small enough&lt;/p&gt;
+
+&lt;p&gt;$ρ(A)$ small enough,&lt;/p&gt;
+
+&lt;p&gt;dynamics of non-autonomous systems are still  contracting and $z_{k+1} − T(x_{k+1})$ converges towards zero.&lt;/p&gt;
+
+&lt;p&gt;Hence the mappings $T$ and $T^{−1}$ , learned on the autonomous system following the procedure of autonomous systems, can be used to design the observer of non-autonomous systems.&lt;/p&gt;
+
+&lt;h3 id=&quot;miscs&quot;&gt;Miscs&lt;/h3&gt;
+
+&lt;p&gt;Another paper about numerical design of luenberger observers proposes to select an input $u(t)$ that makes the system extensively explore the state space. Then a time varying mapping $T_u$ (and so a time varying pseudo inverse $T ^{−1}_ u $) is identified. Unfortunately, this procedure does not guarantee a proper exploration of the state space during training, especially for systems which quickly converge to a limit cycle.&lt;/p&gt;
+
+&lt;p&gt;And the author did rely on the stability of the observer, and therefore on the fact that $z$ forgets its initial conditions, to eliminate the early stages of the simulation from the dataset. Moreover,  the mapping $z = T(x)$ is learned with a fully supervised objective.&lt;/p&gt;
+
+&lt;p&gt;Compared with the mentioned paper, this paper avoids these limitations by design through unsupervised learning, and is therefore simpler to apply.&lt;/p&gt;
+
+&lt;p&gt;First, there are not constraints on inputs, which can be selected to properly explore that state space. Furthermore, the task of learning $T$ may be easier as it is not time dependent. More importantly, in the case of a time varying mapping, an identification should be available for the (possibly infinite) duration of the observer experiment.&lt;/p&gt;
+
+&lt;p&gt;But remember, even if the performances of the proposed approach are promising when we adopt constant control input, the design assumptions in non-autonomous case may be relaxed to provide more general results. And the performance when cope with time-varying control input seems unclear since the computation cost would be unaffordable.&lt;/p&gt;
+
+&lt;h1 id=&quot;simulation-reproduction&quot;&gt;Simulation Reproduction&lt;/h1&gt;
+
+&lt;p&gt;Consider  non-conservative Van der Pol oscillator with nonlinear damping&lt;/p&gt;
+
+&lt;p&gt;\(\left\{\begin{array}{l}
+x_{1, k+1}=x_{1, k}+\delta_{t} x_{2, k} \\
+x_{2, k+1}=x_{2, k}+\delta_{t}\left(\left(1-x_{1, k}^{2}\right) x_{2, k}-x_{1, k}+u_{k}\right) \\
+y_{k}=x_{1, k}
+\end{array}\right.
+\tag{18}\)
+the observer dynamics&lt;/p&gt;
+
+\[z_{k+1}=A z_{k}+B y_{k}+\Psi\left(z_{k}, u_{k}\right) ,  z_{k}=T\left(x_{k}\right)
+\tag{19}\]
+
+&lt;p&gt;Select $A=diag(0.5,0,-0.5)$,&lt;/p&gt;
+
+&lt;p&gt;makes use of $T$ and $T ^{−1}$ learned on the unforced system when $u=0$ for convenience&lt;/p&gt;
+
+&lt;p&gt;During evaluation, consider use an input signal $u_k = 0.44 cos(0.5k × δ_t)$&lt;/p&gt;
+
+&lt;h2 id=&quot;check-contraction-property&quot;&gt;Check Contraction Property&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;$u_k = 0.44 cos(0.5k × δ_t)≤0.44$ and can be deemed as measurement noise. (small enough)  corrected&lt;/li&gt;
+  &lt;li&gt;spectral radius $\rho(A)= 0.5&amp;lt;1$ (small enough) corrected&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;data&quot;&gt;Data&lt;/h2&gt;
+
+&lt;p&gt;Training data and validation data are uniformly sampled in $\mathcal{X}=[-2.3,2.3] \times [-3.3,3.3]$.&lt;/p&gt;
+
+&lt;p&gt;To achieve more accurate estimation, training data and validation data can be generated from different range. For example, training data is from $\mathcal{X}=[-2.5,2.5] \times[-3.5,3.5]$, while validation experiments are conducted with $x_0∈\mathcal{X_0}=[-2,2] \times[-3,3]$.&lt;/p&gt;
+
+&lt;h2 id=&quot;noise-on-y&quot;&gt;Noise on y&lt;/h2&gt;
+
+&lt;p&gt;Additional noise is considered on measurements (a Gaussian signal with standard deviation of 0.2 is added to $y_k$).&lt;/p&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;$T$  30 epochs, $T^{-1}$30 epochs&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T30 T-1 30\T30 T-1 30.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;$T$  80 epochs, $T^{-1}$80 epochs&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T 80 T-1 80\T 80 T-1 80.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;$T$  160 epochs, $T^{-1}$160 epochs&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T160 T-1 160\T 160 T-1 160.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;discussion&quot;&gt;Discussion&lt;/h1&gt;
+
+&lt;h2 id=&quot;the-choice-of-a&quot;&gt;The choice of $A$&lt;/h2&gt;
+
+&lt;p&gt;Note:  the choice of $A$ spectrum can actually effects the capacity of noise rejection, to be more specific, the spectra radius of $A$ is larger, the ability to reject the measurement noise on y is more robust.&lt;/p&gt;
+
+&lt;p&gt;However, according to the analysis of non-autonomous systems’ contracting property, whether the learning-based observer performance with an excitation can converge or not is dependent on the spectra radius of $A$ which means the smaller $A$ is better.&lt;/p&gt;
+
+&lt;p&gt;So It would be a trade-off between the convergence speed and the capability of noise rejection.&lt;/p&gt;
+
+&lt;h3 id=&quot;results-1&quot;&gt;Results&lt;/h3&gt;
+
+&lt;p&gt;$A=diag(0.9,0,-0.9)$,  $T$  80 epochs, $T^{-1}$80 epochs&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T T-1 80 noise 0.2 A 0.9\errors.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;$A=diag(0.5,0,-0.5)$,  $T$  80 epochs, $T^{-1}$80 epochs&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T 80 T-1 80\T 80 T-1 80.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;$A=diag(0.2,0,-0.2)$,  $T$  80 epochs, $T^{-1}$80 epochs&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T T-1 80 R(A)=0.2 noise=0.2\errors (1).jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;model-uncertainty&quot;&gt;Model Uncertainty&lt;/h3&gt;
+
+&lt;p&gt;To generalize the robustness of this learning-based KKL observer,  we have already considered the measurement noise on output y. And performance verifies the capability of noise rejection.&lt;/p&gt;
+
+&lt;p&gt;To take a step further, let’s take a look at the nonlinear discreet time system with model uncertainty, like below.&lt;/p&gt;
+
+&lt;p&gt;\(\left\{\begin{array}{l}
+x_{1, k+1}=x_{1, k}+\delta_{t} x_{2, k}+\sigma_1 \\
+x_{2, k+1}=x_{2, k}+\delta_{t}\left(\left(1-x_{1, k}^{2}\right) x_{2, k}-x_{1, k}+u_{k}\right)+\sigma_2 \\
+y_{k}=x_{1, k}
+\end{array}\right.
+\tag{20}\)
+$\sigma_1,\sigma_2$ both subject to $(0,0.1)$&lt;/p&gt;
+
+&lt;p&gt;In this case, the modification aims to learn an appropriate mapping via inaccurate dataset. Here are the results.&lt;/p&gt;
+
+&lt;p&gt;### Results&lt;/p&gt;
+
+&lt;p&gt;$T$  130 epochs, $T^{-1}$130 epochs, both measurement noise on y and model uncertainty on x exist&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T 130 T-1 130 uncertainty_std=0.1 nosie_std=0.2\130 0.2 0.1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Moreover, to test the disturbance of model uncertainty to performance, the measurement noise on y was removed.&lt;/p&gt;
+
+&lt;p&gt;$T$  130 epochs, $T^{-1}$130 epochs, solely model uncertainty on $x$ exists&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T T-1 130 unc_std=0.1 noise=0\T T-1 130 unc_std=0.1 noise=0.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;future-work&quot;&gt;Future Work&lt;/h2&gt;
+
+&lt;h3 id=&quot;hyper-parameter&quot;&gt;hyper-parameter&lt;/h3&gt;
+
+&lt;h3 id=&quot;ekf-qr-matrix&quot;&gt;EKF QR Matrix&lt;/h3&gt;
+
+&lt;h3 id=&quot;trade-off-of-a&quot;&gt;Trade-off of A&lt;/h3&gt;
+
+&lt;h3 id=&quot;robustness-of-model-uncertainty&quot;&gt;Robustness of model uncertainty&lt;/h3&gt;
+
+&lt;h1 id=&quot;appendix&quot;&gt;Appendix&lt;/h1&gt;
+
+&lt;p&gt;the relevant proof about non-autonomous systems’ contracting property&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\proof1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\proof2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="machine learning" /><category term="control theory" /><summary type="html">This report serves as my group meeting materials at EMANG in August,27. This article is about using the end-to-end approach of Deep Learning to compute the transformation which is incredibly essential for KKL observer. For simple, this article dives into this field through the aspect of autonomous systems and then the work is extended to non-autonomous systems with an excitation.</summary></entry><entry><title type="html">Multi-Robot Point-To-Point Transitions with Collision Avoidance using ROS2</title><link href="http://localhost:4000/posts/2021/09/roboform" rel="alternate" type="text/html" title="Multi-Robot Point-To-Point Transitions with Collision Avoidance using ROS2" /><published>2021-09-12T00:00:00-05:00</published><updated>2021-09-12T00:00:00-05:00</updated><id>http://localhost:4000/posts/2021/09/roboform</id><content type="html" xml:base="http://localhost:4000/posts/2021/09/roboform">&lt;p&gt;This technical report aims to server as course project technical report from Yubin Wang and also be tutorials of Turtlebot3 with ROS2 and Python3 for all members at ANCL which is under the supervision of Prof. Fei Chen at Northeastern University.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;Please note that this technical report &lt;strong&gt;has not been published as open source file&lt;/strong&gt;.
+And we are considering to free this project access to public if in convenience.&lt;/p&gt;
+
+&lt;p&gt;Author: Yubin Wang, Du Yong&lt;/p&gt;
+
+&lt;h1 id=&quot;hardware&quot;&gt;Hardware&lt;/h1&gt;
+
+&lt;p&gt;A remote PC (Laptop)          &lt;br /&gt;
+Several turtlebot3 mobile robots            &lt;br /&gt;
+OptiTrack or other kinds of motion capture systems like VICON           &lt;br /&gt;
+A server with motive(API of OptiTrack)&lt;/p&gt;
+
+&lt;h1 id=&quot;software&quot;&gt;Software&lt;/h1&gt;
+
+&lt;p&gt;Several turtlebot3 burgers with Raspberry Pi inserted by Ubuntu18.04 and relevant ros2 packages are necessary. And you may jump to ROBOTIS official tutorials to seek more constructive references since I would overlook too many details which you can get the access via many ways.
+ [ROBOTIS e-Manual]https://emanual.robotis.com)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; : we select burger as our testbed in this project and you can choose any other kinds of ROS2 standard platform as you need.
+ Repeat above procedures if you need set up multiple turtlebot3.&lt;/p&gt;
+
+&lt;h1 id=&quot;bringup&quot;&gt;Bringup&lt;/h1&gt;
+
+&lt;p&gt;Assuming all our robots and remote PC are connected to the same WIFI at this setup.
+[Remote PC] test ssh can work or not:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh ubuntu@&amp;lt;NETWORK IP of Raspberry PI&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;modify-host-file&quot;&gt;Modify Host File&lt;/h2&gt;
+
+&lt;p&gt;If this step can’t work, you may modify the host file:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo vim /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and add IP of robots haven’t been registered:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;robot's IP ie. 192.168.1.181&amp;gt; ubuntu
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Restart ssh and check if it works.&lt;/p&gt;
+
+&lt;p&gt;And bringing up singe robot is not a case anymore:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ros2 launch turtlebot3_bringup robot.launch.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;distribute-name-to-each-robo&quot;&gt;Distribute Name to Each Robo&lt;/h2&gt;
+
+&lt;p&gt;The trouble which makes you down is &lt;strong&gt;Giving a TurtleBot3 a Namespace for Multi-Robot Experiments&lt;/strong&gt;.
+A blog from a PhD. candidate at ASU helps. &lt;a href=&quot;https://zmk5.github.io/general/guide/2019/09/20/ros2-tb3-namespace.html&quot;&gt;https://zmk5.github.io/general/guide/2019/09/20/ros2-tb3-namespace.html&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So let’s get started. You should connect each robot via ssh and follow below instructions:&lt;/p&gt;
+
+&lt;h3 id=&quot;step-1-create-a-new-ros2-package&quot;&gt;Step 1: Create a New ros2 Package:&lt;/h3&gt;
+
+&lt;p&gt;Start by changing into your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src&lt;/code&gt; directory of your workspace that also contains the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turtlebot3&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;utils&lt;/code&gt; packages provided by ROBOTIS.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ cd ~/turtlebot3_ws/src
+~$ ros2 pkg create my_tb3_launcher
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, create two empty directories in the new package:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ cd ~/turtlebot3_ws/src/my_tb3_launcher
+~$ mkdir launch
+~$ mkdir param
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Change into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;launch&lt;/code&gt; directory and create a new bringup launch file.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ cd launch
+~$ touch my_tb3_bringup.launch.py
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;step2-copy-and-modify-contents-from-the-tb3-bringup-package-into-your-package&quot;&gt;Step2: Copy and Modify Contents from the TB3 Bringup Package into Your Package&lt;/h3&gt;
+
+&lt;p&gt;In the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turtlebot3/turtlebot3_bringup&lt;/code&gt; ros2 package, copy the contents of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;robot.launch.py&lt;/code&gt; into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_tb3_bringup.launch.py&lt;/code&gt; with the following changes marked as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;# comments&lt;/code&gt; in the following code:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os2
+
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration
+from launch.substitutions import ThisLaunchFileDir
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+    TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
+
+    usb_port = LaunchConfiguration('usb_port', default='/dev/ttyACM0')
+
+    tb3_param_dir = LaunchConfiguration(
+        'tb3_param_dir',
+        default=os.path.join(
+            get_package_share_directory('my_tb3_launcher'),  # &amp;lt;--- CHANGE THIS!
+            'param',
+            TURTLEBOT3_MODEL + '.yaml'))
+
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+
+    return LaunchDescription([
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value=use_sim_time,
+            description='Use simulation (Gazebo) clock if true'),
+
+        DeclareLaunchArgument(
+            'usb_port',
+            default_value=usb_port,
+            description='Connected USB port with OpenCR'),
+
+        DeclareLaunchArgument(
+            'tb3_param_dir',
+            default_value=tb3_param_dir,
+            description='Full path to turtlebot3 parameter file to load'),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                [ThisLaunchFileDir(), '/turtlebot3_state_publisher.launch.py']),
+            launch_arguments={'use_sim_time': use_sim_time}.items(),
+        ),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/hlds_laser.launch.py']),  &amp;lt;--- CHANGE THIS
+            launch_arguments={'port': '/dev/ttyUSB0', 'frame_id': 'base_scan'}.items(),
+        ),
+
+        Node(
+            package='turtlebot3_node',
+            node_executable='turtlebot3_ros',
+            node_namespace='tb3_0',  # &amp;lt;------------------- ADD THIS!
+            parameters=[tb3_param_dir],
+            arguments=['-i', usb_port],
+            output='screen'),
+    ])
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, copy the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turtlebot3_state_publisher.launch.py&lt;/code&gt; from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turtlebot3_bringup/launch&lt;/code&gt; directory into your package’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;launch&lt;/code&gt; directory. Make sure it has the same name! Once complete, make the following changes as marked by the following comments:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os
+
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+    TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
+
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+    urdf_file_name = 'turtlebot3_' + TURTLEBOT3_MODEL + '.urdf'
+
+    print(&quot;urdf_file_name : {}&quot;.format(urdf_file_name))
+
+    urdf = os.path.join(
+        get_package_share_directory('turtlebot3_description'),
+        'urdf',
+        urdf_file_name)
+
+    return LaunchDescription([
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock if true'),
+
+        Node(
+            package='robot_state_publisher',
+            node_executable='robot_state_publisher',
+            node_name='robot_state_publisher',
+            node_namespace='tb3_0',  # &amp;lt;------------------- ADD THIS!
+            output='screen',
+            parameters=[{'use_sim_time': use_sim_time}],
+            arguments=[urdf]),
+    ])
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, copy the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hlds_laser.launch.py&lt;/code&gt; from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hls_lfcd_lds_driver&lt;/code&gt; package located in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;launch&lt;/code&gt; directory into your package’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;launch&lt;/code&gt; directory. Again, make sure it has the same name!. Modify the launch file with the following changes marked by the comments below:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import os
+
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.actions import LogInfo
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+    port = LaunchConfiguration('port', default='/dev/ttyUSB0')
+
+    frame_id = LaunchConfiguration('frame_id', default='laser')
+
+    return LaunchDescription([
+
+        DeclareLaunchArgument(
+            'port',
+            default_value=port,
+            description='Specifying usb port to connected lidar'),
+
+        DeclareLaunchArgument(
+            'frame_id',
+            default_value=frame_id,
+            description='Specifying frame_id of lidar. Default frame_id is \'laser\''),
+
+        Node(
+            package='hls_lfcd_lds_driver',
+            node_executable='hlds_laser_publisher',
+            node_name='hlds_laser_publisher',
+            node_namespace='tb3_0',  # &amp;lt;------------------- ADD THIS!
+            parameters=[{'port': port, 'frame_id': frame_id}],
+            output='screen'),
+    ])
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;step-3-modify-the-parameter-yaml-file&quot;&gt;Step 3: Modify the Parameter YAML File&lt;/h3&gt;
+
+&lt;p&gt;Now copy the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;burger.yaml&lt;/code&gt; file located in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;param&lt;/code&gt; directory of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turtlebot3_bringup&lt;/code&gt; package, and make the following modification at the top!&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tb3_0:
+  turtlebot3_node:
+    ros__parameters:
+
+      opencr:
+        id: 200
+        baud_rate: 1000000
+        protocol_version: 2.0
+
+      wheels:
+        separation: 0.160
+        radius: 0.033
+
+      motors:
+        profile_acceleration_constant: 214.577
+
+        # [rev/min2]
+        # ref) http://emanual.robotis.com/docs/en/dxl/x/xl430-w250/#profile-acceleration
+        profile_acceleration: 0.0
+
+      sensors:
+        bumper_1: false
+        bumper_2: false
+
+        illumination: false
+
+        ir: false
+
+        sonar: false
+
+tb3_0:
+  diff_drive_controller:
+    ros__parameters:
+
+      odometry:
+        publish_tf: true
+        use_imu: true
+        frame_id: &quot;odom&quot;
+        child_frame_id: &quot;base_footprint&quot;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As you can see, the top most parameter used to be the node name (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turtlebot3_node&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;diff_drive_controller&lt;/code&gt;). For the node namespace that you added to work, you will need to add the node namespace (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tb3_0&lt;/code&gt;) one level &lt;em&gt;above&lt;/em&gt; the node name!&lt;/p&gt;
+
+&lt;p&gt;In Step 2, we already changed the launch file to point to &lt;em&gt;this&lt;/em&gt; yaml file instead of the one located in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;turtlebot3_bringup&lt;/code&gt; package.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-4-modify-the-cmakelists-file&quot;&gt;Step 4: Modify the CMakeLists File&lt;/h3&gt;
+
+&lt;p&gt;For this section, we will just be adding a small code snipet to our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CMakeLists.txt&lt;/code&gt; that will install the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;launch&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;param&lt;/code&gt; contents of our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_tb3_launcher&lt;/code&gt; package.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
+install(DIRECTORY
+  launch
+  param
+  DESTINATION share/${PROJECT_NAME}/
+)
+...
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add this snippet right before the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if(BUILD_TESTING)&lt;/code&gt; section of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CMakeLists.txt&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-5-compile-and-run&quot;&gt;Step 5: Compile and Run&lt;/h3&gt;
+
+&lt;p&gt;Finally, compile the code on your TurtleBot3:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ cd ~/turtlebot3_ws
+~$ colcon build --symlink-install --parallel-workers 1
+~$ . install/setup.bash
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, run your launch file to make sure it works!&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ export TURTLEBOT3_MODEL=burger
+~$ ros2 launch my_tb3_launcher my_tb3_bringup.launch.py
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You should get the following topics when you run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ros2 topic list&lt;/code&gt; in another bash session:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/tb3_0/battery_state
+/tb3_0/cmd_vel
+/tb3_0/imu
+/tb3_0/joint_states
+/tb3_0/magnetic_field
+/tb3_0/odom
+/tb3_0/parameter_events
+/tb3_0/robot_description
+/tb3_0/rosout
+/tb3_0/scan
+/tb3_0/sensor_state
+/tb3_0/tf
+/tb3_0/tf_static
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can repeat these procedures with other TurtleBot3 robots with different namespaces to have multiple robots working in your network and then bring up all them.&lt;/p&gt;
+
+&lt;p&gt;By the way,  it’s accessible for robots with their own namespace to response indicators from remote PC. For example, in terminal on remote PC:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; ros2 run turtlebot3_teleop teleop_keyboard --ros -arg --remap /cmd_vel:=/tb3_0/cmd_vel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run this keyboard-based control file to test it.&lt;/p&gt;
+
+&lt;h1 id=&quot;optitrack&quot;&gt;OptiTrack&lt;/h1&gt;
+
+&lt;p&gt;In such multi-robot experiments, OptiTrack or other kinds of global motion capture systems can provided us with reliable state measurements. It’s common that OptiTrack communicates with our PC via VRPN, a kind of data streaming.&lt;/p&gt;
+
+&lt;h2 id=&quot;comms-between-ros-and-optitrack&quot;&gt;Comms between ROS and OptiTrack&lt;/h2&gt;
+
+&lt;p&gt;This section is translated from previous CSDN blog &lt;a href=&quot;https://blog.csdn.net/weixin_41536025/article/details/89913961&quot;&gt;“Optitrack与ROS详细教程以及Motive的使用”&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;software-installation&quot;&gt;Software Installation&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Run Motive installaton package&lt;/li&gt;
+  &lt;li&gt;Install USB drive&lt;/li&gt;
+  &lt;li&gt;Install Motive to server (default installation path is OK).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;software-activation&quot;&gt;Software Activation&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open Optitrack -&amp;gt; License Tool&lt;/li&gt;
+  &lt;li&gt;Fill in License Serial Number/ License Hash/ Hardware Key Serial Number as your bill information.&lt;/li&gt;
+  &lt;li&gt;Click “Activation”.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;calibration&quot;&gt;Calibration&lt;/h3&gt;
+
+&lt;p&gt;If there is any change on any camera, please recaibration to avoid potential localization inaccuracy.
+And calibration accuracy would decrease as time ,varying temperature and other experimental elements, so we recommend that recalibrate cameras every day.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Select “Perform Camera Callibration” in the starting interface.&lt;/li&gt;
+  &lt;li&gt;Clear all masks via camera preview.&lt;/li&gt;
+  &lt;li&gt;Click “Mask Visible” to clear all shinning and unremovable objects in court.&lt;/li&gt;
+  &lt;li&gt;Start Wanding.&lt;/li&gt;
+  &lt;li&gt;Calculae localization errors.&lt;/li&gt;
+  &lt;li&gt;Apply calibration result.&lt;/li&gt;
+  &lt;li&gt;Put the L-shape bar into court. Please make sure constructed coordinate system is correct by cheking the direction of bar.&lt;/li&gt;
+  &lt;li&gt;Set Ground Plane.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;creating-rigidbody&quot;&gt;Creating Rigidbody&lt;/h3&gt;
+
+&lt;p&gt;3 ways to create rigidbody:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Create from selected markers after selecting at least three markers.&lt;/li&gt;
+  &lt;li&gt;Use hot key “Ctrl+T” to create it.&lt;/li&gt;
+  &lt;li&gt;Select “New Rigid Body” in Asset window.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;tracking-rigidbody&quot;&gt;Tracking Rigidbody&lt;/h3&gt;
+
+&lt;p&gt;For rigidbody, the pivot point represents its location and posture. Hence, make sure that the direction of rigidbody’s local coordinate system is as same as global coordinate system.&lt;/p&gt;
+
+&lt;p&gt;Rigid Body -&amp;gt; Real-Time Info to view current info of rigidbody.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-streaming&quot;&gt;Data Streaming&lt;/h3&gt;
+
+&lt;p&gt;OPen streaming window.&lt;/p&gt;
+
+&lt;p&gt;Make sure the following buttons are opened:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Broadcast Frame Data.&lt;/li&gt;
+  &lt;li&gt;Broadcast VRPN Data&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;vrpn-configuration&quot;&gt;VRPN Configuration&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd ~/catkin_ws/src
+git clone https://github.com/clearpathrobotics/vrpn_client_ros.git
+sudo apt-get install ros-kinetic-vrpn # vrpn version should match with your ros version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Then,&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd ~/catkin_ws
+catkin_make
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Test the communication,&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ping 192.168.1.2 # ip of server with motive
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;launch-vrpn&quot;&gt;Launch VRPN&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;roslaunch vrpn_client_ros sample.launch server:=192.168.1.2 # ip of server with motive
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;note&quot;&gt;Note&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Make sure ip is correct&lt;/li&gt;
+  &lt;li&gt;Close server’s firewall&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;bridge-between-ros1-and-ros2&quot;&gt;Bridge between ROS1 and ROS2&lt;/h2&gt;
+
+&lt;p&gt;It is worth noting that the wide-spread VRPN client, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vrpn_client_ros&lt;/code&gt;, is dependent on ROS1, but turtlebot3 packages are inserted in ROS2. In this case, we introduce a dynamic bridge for which ROS1 and ROS2 can exchange topics, services, messages with each other.&lt;/p&gt;
+
+&lt;p&gt;vrpn_client_ros is a open source package which rely on ROS1 environment, but all our turtlebot package should be run in ROS2. So in this part, we are going to achieve simultaneous ROS1-ROS2 communication.  &lt;br /&gt;
+For more details,  please refer to &lt;a href=&quot;https://github.com/ros2/ros1_bridge&quot;&gt;https://github.com/ros2/ros1_bridge&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;First we start a ROS 1 roscore:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#Shell A (ROS 1 only):
+. /opt/ros/melodic/setup.bash
+#Or, on OSX, something like:
+#. ~/ros_catkin_ws/install_isolated/setup.bash
+roscore
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we start the dynamic bridge which will watch the available ROS 1 and ROS 2 topics. Once a matching topic has been detected it starts to bridge the messages on this topic.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Shell B (ROS 1 + ROS 2):
+# Source ROS 1 first:
+. /opt/ros/melodic/setup.bash
+# Or, on OSX, something like:
+# . ~/ros_catkin_ws/install_isolated/setup.bash
+# Source ROS 2 next:
+. &amp;lt;install-space-with-bridge&amp;gt;/setup.bash
+# For example:
+# . /opt/ros/dashing/setup.bash
+export ROS_MASTER_URI=http://localhost:11311
+ros2 run ros1_bridge dynamic_bridge
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The program will start outputting the currently available topics in ROS 1 and ROS 2 in a regular interval.&lt;/p&gt;
+
+&lt;p&gt;Now we start the ROS 1 node.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Shell C:
+source ~/catkin_ws/devel/setup.bash
+# Or, on OSX, something like:
+# . ~/ros_catkin_ws/install_isolated/setup.bash
+roslaunch vrpn_client_ros sample.launch server:=&amp;lt;IP of server with motive&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Basically, you will be shown that vrpn_client_node would be listed after you run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rqt&lt;/code&gt; once you have already launched the bringup file of each robot:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ros2 launch my_tb3_launcher my_tb3_bringup.launch.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;run-our-demo&quot;&gt;Run Our Demo&lt;/h1&gt;
+
+&lt;p&gt;Congratulations!   &lt;br /&gt;
+At this step,  believe that you have activated all robotic environments and communication channel.&lt;/p&gt;
+
+&lt;p&gt;Don’t wait to build workspace:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd ~/turtlebot3_ws
+colcon build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and run turtlebot3_position_control file:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ros2 run turtlebot3_example turtlebot3_position_control
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="multi-robot systems" /><summary type="html">This technical report aims to server as course project technical report from Yubin Wang and also be tutorials of Turtlebot3 with ROS2 and Python3 for all members at ANCL which is under the supervision of Prof. Fei Chen at Northeastern University.</summary></entry><entry><title type="html">position1</title><link href="http://localhost:4000/posts/2021/01/gps-gis-osm" rel="alternate" type="text/html" title="position1" /><published>2021-01-04T00:00:00-06:00</published><updated>2021-01-04T00:00:00-06:00</updated><id>http://localhost:4000/posts/2021/01/gps-gis-osm</id><content type="html" xml:base="http://localhost:4000/posts/2021/01/gps-gis-osm">&lt;p&gt;under construction&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/gps-gis-osm/opq_trails_full-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/gps-gis-osm/ut_roads-1.png&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="unkown" /><summary type="html">under construction</summary></entry><entry><title type="html">Position 10</title><link href="http://localhost:4000/posts/2020/09/spatial-sql" rel="alternate" type="text/html" title="Position 10" /><published>2020-09-25T00:00:00-05:00</published><updated>2020-09-25T00:00:00-05:00</updated><id>http://localhost:4000/posts/2020/09/spatial-sql</id><content type="html" xml:base="http://localhost:4000/posts/2020/09/spatial-sql">&lt;p&gt;under construction&lt;/p&gt;
+
+&lt;!--more--&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="GIS" /><category term="SQL" /><category term="data" /><summary type="html">under construction</summary></entry><entry><title type="html">Position 11</title><link href="http://localhost:4000/posts/2020/09/jekyll-html" rel="alternate" type="text/html" title="Position 11" /><published>2020-09-19T00:00:00-05:00</published><updated>2020-09-19T00:00:00-05:00</updated><id>http://localhost:4000/posts/2020/09/jekyll-html</id><content type="html" xml:base="http://localhost:4000/posts/2020/09/jekyll-html">&lt;p&gt;under constrcution&lt;/p&gt;
+
+&lt;!--more--&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="jekyll" /><category term="rmarkdown" /><category term="data" /><category term="visualization" /><summary type="html">under constrcution</summary></entry><entry><title type="html">Position 12</title><link href="http://localhost:4000/posts/2020/08/pdf-data/" rel="alternate" type="text/html" title="Position 12" /><published>2020-08-28T00:00:00-05:00</published><updated>2020-08-28T00:00:00-05:00</updated><id>http://localhost:4000/posts/2020/08/pdf-data</id><content type="html" xml:base="http://localhost:4000/posts/2020/08/pdf-data/">&lt;p&gt;under construction&lt;/p&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="peacekeeping" /><category term="data" /><category term="visualization" /><summary type="html">under construction</summary></entry><entry><title type="html">Adding Content to an Academic Website</title><link href="http://localhost:4000/posts/2020/08/website-content/" rel="alternate" type="text/html" title="Adding Content to an Academic Website" /><published>2020-08-07T00:00:00-05:00</published><updated>2020-08-07T00:00:00-05:00</updated><id>http://localhost:4000/posts/2020/08/website-content</id><content type="html" xml:base="http://localhost:4000/posts/2020/08/website-content/">&lt;p&gt;Please note that this blog is forwarded from &lt;a href=&quot;https://jayrobwilliams.com/&quot;&gt;Dr. Rob Williams&lt;/a&gt; in order to assit my friends especially in China in building his/her own academic website.&lt;/p&gt;
+
+&lt;p&gt;One thing I haven’t covered in my previous posts on &lt;a href=&quot;/posts/2020/06/academic-website/&quot;&gt;creating&lt;/a&gt; and &lt;a href=&quot;/posts/2020/07/customizing-website/&quot;&gt;customizing&lt;/a&gt; an academic website is how to actually add content to your site. You know, the stuff that’s the reason why people go to your website in the first place? If you’ve followed those guides, your website should be professional looking and already feeling a little bit different from the stock template. However, adding new pages or tweaking the existing pages can be a little intimidating, and I realized I should probably walk through how to do so. Luckily Jekyll’s use of Markdown makes it really easy to add new content!&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h1 id=&quot;content&quot;&gt;#Content&lt;/h1&gt;
+
+&lt;p&gt;Editing the welcome page for your site (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages/about.md&lt;/code&gt;) is relatively straightforward. Things get a little trickier if you want to build an entirely new page to your website. You’ll notice that I have a &lt;a href=&quot;/software&quot;&gt;software&lt;/a&gt; page on my site that isn’t part of the &lt;a href=&quot;https://academicpages.github.io/&quot;&gt;academicpages&lt;/a&gt; template. I’ll use that page as a running example to walk you through adding a new page to your site.&lt;/p&gt;
+
+&lt;h2 id=&quot;first-steps&quot;&gt;First steps&lt;/h2&gt;
+
+&lt;p&gt;First things first, we need to create a file for the page itself. The main pages for your website are generated from &lt;a href=&quot;https://en.wikipedia.org/wiki/Markdown&quot;&gt;Markdown&lt;/a&gt; files contained in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages&lt;/code&gt; directory. Create a new file called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;software.md&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages&lt;/code&gt;. Now, open it up in RStudio or your text editor of choice. If you’ve looked at the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; files for other pages, you’ll notice that they all start with a similar block of text. This is a &lt;a href=&quot;https://en.wikipedia.org/wiki/YAML&quot;&gt;YAML&lt;/a&gt; header that tells Jekyll the basic information needed to build the page. There are lots of different options you can include, but the only two you really need are the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;permalink&lt;/code&gt; for the page and its &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;title&lt;/code&gt;. Add the following to the top of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;software.md&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;permalink&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/software/&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Software&quot;&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Anything after that second line of dashes will be translated into actual content on the page.&lt;/p&gt;
+
+&lt;h2 id=&quot;fill-it-out&quot;&gt;Fill it out&lt;/h2&gt;
+
+&lt;p&gt;Now we need to make our new page actually say something. My software page lists the R packages I’ve contributed to and includes links to miscellaneous other bits of code like functions for working with video data in Python or the LaTeX template I used for my dissertation. You can check out the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; source file for my software page on my &lt;a href=&quot;https://raw.githubusercontent.com/jayrobwilliams/jayrobwilliams.github.io/master/_pages/software.md&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A couple of things to notice:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You can create headings using pound signs
+    &lt;ul&gt;
+      &lt;li&gt;More pound signs produce smaller headings&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;You can create links using standard Markdown syntax, e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[link text](url)&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;If you’re linking to a page generated from a source &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; file in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages&lt;/code&gt;, just put a slash before the page name and don’t include any extension, e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[software](/software)&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;You can embed images by adding an exclamation point before the opening &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[&lt;/code&gt; in Markdown link syntax, e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;![](/images/profile.png)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;You can create code blocks like the ones on this page by enclosing text in triple backticks
+    &lt;ul&gt;
+      &lt;li&gt;Put the name of the programming language after the opening backticks to activate &lt;a href=&quot;https://en.wikipedia.org/wiki/Syntax_highlighting&quot;&gt;syntax highlighting&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;You can also embed raw HTML directly like I used to include three images next to one another&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These tools should be sufficient to let you build an awesome new page for your website. However, letting visitors actually get to your new page requires a little more work.&lt;/p&gt;
+
+&lt;h2 id=&quot;you-cant-get-there-from-here&quot;&gt;You can’t get there from here&lt;/h2&gt;
+
+&lt;p&gt;If you want to just add a link to your new page from an existing page, like the homepage, that’s easy and can be accomplished by adding a link to the Markdown source in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages/about.md&lt;/code&gt;. That’s how I added my &lt;a href=&quot;/teaching-materials&quot;&gt;teaching materials&lt;/a&gt; page; it’s just a link on my &lt;a href=&quot;/teaching&quot;&gt;teaching&lt;/a&gt; page. But what about if you want your new page to be easily accessed from the fancy navigation bar at the top of the site?&lt;/p&gt;
+
+&lt;p&gt;To do that, we’ll need to edit the files Jekyll uses to control navigation on the site. Open up &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/navigation.yml&lt;/code&gt; and get ready to add our new page to the to menu. This is what it looks like in the template:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# main links links&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Publications&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/publications/&lt;/span&gt;
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Talks&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/talks/&lt;/span&gt;    
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Teaching&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/teaching/&lt;/span&gt;    
+    
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Portfolio&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/portfolio/&lt;/span&gt;
+        
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Blog&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Posts&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/year-archive/&lt;/span&gt;
+    
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;CV&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/cv/&lt;/span&gt;
+    
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Guide&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/markdown/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The order that items appear in top-to-bottom in this file is also the order they’ll appear in left-to-right in the navigation bar. So decide where you want your new page to go, and slot it in. This is what &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/navigation.yml&lt;/code&gt; looks like for my website:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# main links links&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Publications&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/publications/&lt;/span&gt;
+    
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Research&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/research/&lt;/span&gt;
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Teaching&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/teaching/&lt;/span&gt;
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Software&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/software/&lt;/span&gt;
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Posts&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/posts/&lt;/span&gt;
+    
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;CV&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/cv/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Again, you can check out the current version of this file for my site at my &lt;a href=&quot;https://github.com/jayrobwilliams/jayrobwilliams.github.io/blob/master/_data/navigation.yml&quot;&gt;GitHub&lt;/a&gt; if you want. If I’ve changed anything in the navigation menu since I wrote this post, those changes will be reflected there.&lt;/p&gt;
+
+&lt;p&gt;You’ll also notice that the Guide link is no longer there in my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/navigation.yml&lt;/code&gt;. Removing elements from this file drops them from the navigation menu, so if there are any other pages in the template you don’t plan to use, go ahead and remove them now.&lt;/p&gt;
+
+&lt;p&gt;Once you’re happy with your new page, it’s time to tell git about them, and then upload them to GitHub. You can do this with&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add _pages/software.md _data/navigation.yml
+git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;add software page&quot;&lt;/span&gt;
+git push
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you followed the guide on &lt;a href=&quot;/posts/2020/06/academic-website/#uploading-changes-to-github&quot;&gt;uploading changes to GitHub&lt;/a&gt; in my post on &lt;a href=&quot;/posts/2020/06/academic-website/&quot;&gt;making an academic website&lt;/a&gt;, all of the above code should run smoothly and in a few minutes you’ll have a new page on your website.&lt;/p&gt;
+
+&lt;h1 id=&quot;uploading-files&quot;&gt;Uploading files&lt;/h1&gt;
+
+&lt;p&gt;One of the advantages of using GitHub pages to host your website is that you don’t have to use Dropbox to host PDFs of your working papers and published articles, not to mention your CV. If you use Wix or WordPress, you may have to upload your files to Dropbox, and then link to them on your site. This process has three major downsides:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You have to update your website in two places to add or update a PDF&lt;/li&gt;
+  &lt;li&gt;Google Scholar will ignore Dropbox links, so you won’t get a record of your scholarship online&lt;/li&gt;
+  &lt;li&gt;If someone clicks a Dropbox while viewing your site on their phone or tablet, it may take them to the Dropbox app or pop up a message about the app not being installed&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;All of these are less than ideal. Luckily, GitHub Pages has the capability to address all three already built in. When you make an update to your website and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git push&lt;/code&gt; it to GitHub, &lt;em&gt;all&lt;/em&gt; tracked files get uploaded with it. This means it’s super easy to upload your PDFs to your site and link directly to them. I’ll walk through how to do this with an example PDF called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;working-paper.pdf&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;First, copy the PDF into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;files/pdf&lt;/code&gt; directory in your site’s directory. Next we need to tell git about this file, which we do with&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add files/pdf/working-paper.pdf
+git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;add working paper&quot;&lt;/span&gt;
+git push
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Don’t forget to add a link to the paper somewhere on your research page so that visitors can access it. Here’s an example of what that link might look like: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[Working Paper](/files/pdf/working-paper.pdf)&lt;/code&gt;. And if you want to use the &lt;a href=&quot;/posts/2020/07/customizing-website/#pushing-buttons&quot;&gt;fancy button&lt;/a&gt; from my post on &lt;a href=&quot;/posts/2020/07/customizing-website/&quot;&gt;customizing your site&lt;/a&gt;, you would do this: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[Working Paper](/files/pdf/working-paper.pdf){: .btn--research}&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;designing-for-mobile&quot;&gt;Designing for mobile&lt;/h1&gt;
+
+&lt;p&gt;One of the advantages of the &lt;a href=&quot;https://academicpages.github.io/&quot;&gt;academicpages&lt;/a&gt; template is that it is &lt;a href=&quot;https://en.wikipedia.org/wiki/Responsive_web_design&quot;&gt;responsive&lt;/a&gt;, meaning that layouts change automatically with screen size to present content in the most efficient manner. Take a look at my website on your phone to see how a smaller device changes the site’s layout. When you’re editing your website, it’s a good idea to periodically check how it appears on a phone, as it’s likely that a number of visitors to your site will view it on their phones.&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;To do so, you can use tools like Chrome’s &lt;a href=&quot;https://developers.google.com/web/tools/chrome-devtools/device-mode&quot;&gt;device mode&lt;/a&gt;, but this can be annoying and doesn’t perfectly capture the experience of navigating your site on a small touchscreen. The best way to do that is, unsurprisingly, to use your actual phone. However, this requires a slight tweak to our usual &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt; command. We need to add a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--host&lt;/code&gt; argument to the command, where the value of the argument is our computer’s IP address. There are many ways to look this up, but here are two quick ones you can execute from the terminal:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;On MacOS: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;On Linux: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hostname -I&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What each of these will do is capture the &lt;em&gt;local&lt;/em&gt; IP address of the computer. Often this will be something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;192.168.1.x&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;10.0.0.x&lt;/code&gt;. This won’t let you access the site from outside your network over the internet, but it &lt;em&gt;will&lt;/em&gt; let you access it locally on your own network. Once you’ve found your local IP address, you can serve your site on your local network, letting you view it on your phone or tablet. For example, my IP address is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;192.168.1.6&lt;/code&gt;, so putting it all together I get:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve &lt;span class=&quot;nt&quot;&gt;--host&lt;/span&gt; 192.168.1.6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is quite a lot to type, and your computer’s local IP address can change occasionally, so you can’t just keep putting in the same IP address each time. To save yourself some time by creating an &lt;a href=&quot;https://en.wikipedia.org/wiki/Alias_(command)&quot;&gt;alias&lt;/a&gt; for the command. An alias is simply a way to refer to a longer command with a shorter label. To do this, you’ll need to edit your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt; configuration file.&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; The easiest way to do this is to run&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nano ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will open up your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt; in &lt;a href=&quot;https://en.wikipedia.org/wiki/GNU_nano&quot;&gt;nano&lt;/a&gt;, a simple text editor.&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; I’ve decided to call my aliased command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;serve-site&lt;/code&gt;, but you could call it anything you want. Scroll down to the end of the file and add either&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;serve-site&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bundle exec jekyll serve --host=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;ifconfig en0 | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;inet | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; inet6 | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $2}'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;for MacOS or&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;serve-site&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bundle exec jekyll serve --host=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;hostname&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-I&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;for Linux. Once you’ve added this line, save the file by pressing &lt;kbd&gt;ctrl&lt;/kbd&gt;+&lt;kbd&gt;o&lt;/kbd&gt; and then &lt;kbd&gt;enter&lt;/kbd&gt; to use the existing filename, overwriting the old version of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt;. Then press &lt;kbd&gt;ctrl&lt;/kbd&gt;+&lt;kbd&gt;x&lt;/kbd&gt; to close nano. The last step is to tell your terminal about this new alias. You can accomplish this with&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;regardless of whether you’re on Linux or MacOS. Now whenever you want to check out your website on a mobile device, you can just navigate to your website’s directory and use the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;serve-site&lt;/code&gt; alias to launch it locally.&lt;/p&gt;
+
+&lt;h2 id=&quot;windows&quot;&gt;Windows&lt;/h2&gt;
+
+&lt;p&gt;If you’re trying to figure out how to do this on Windows, I haven’t forgotten about you, I just have no idea how to do this on Windows ¯\_(ツ)_/¯. My recommendation would be to do a lot of googling, or to install the &lt;a href=&quot;https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux&quot;&gt;Windows Subsystem for Linux&lt;/a&gt;, which will allow you to use a bash shell to interact with your files.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;As a senior faculty member once pointed out to me, the search committee member who didn’t fully read your application is most likely to pull up your website on their phone during a committee meeting. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;I’m assuming that you’re using bash as your shell. If you’re using a different shell, see &lt;a href=&quot;https://kb.iu.edu/d/abdy&quot;&gt;this list&lt;/a&gt; for which configuration files you should be editing. Other shells may also define aliases in different ways. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Feel free to use a different editor or use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;edit&lt;/code&gt; command if you’ve set the default editor to your preferred editor. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="website" /><category term="git" /><category term="github" /><category term="bash" /><summary type="html">Please note that this blog is forwarded from Dr. Rob Williams in order to assit my friends especially in China in building his/her own academic website. One thing I haven’t covered in my previous posts on creating and customizing an academic website is how to actually add content to your site. You know, the stuff that’s the reason why people go to your website in the first place? If you’ve followed those guides, your website should be professional looking and already feeling a little bit different from the stock template. However, adding new pages or tweaking the existing pages can be a little intimidating, and I realized I should probably walk through how to do so. Luckily Jekyll’s use of Markdown makes it really easy to add new content!</summary></entry><entry><title type="html">Customizing an Academic Website</title><link href="http://localhost:4000/posts/2020/07/customizing-website/" rel="alternate" type="text/html" title="Customizing an Academic Website" /><published>2020-07-06T00:00:00-05:00</published><updated>2020-07-06T00:00:00-05:00</updated><id>http://localhost:4000/posts/2020/07/customizing-website</id><content type="html" xml:base="http://localhost:4000/posts/2020/07/customizing-website/">&lt;p&gt;Please note that this blog is forwarded from &lt;a href=&quot;https://jayrobwilliams.com/&quot;&gt;Dr. Rob Williams&lt;/a&gt; in order to assit my friends especially in China in building his/her own academic website.&lt;/p&gt;
+
+&lt;p&gt;This is a followup to my previous post on &lt;a href=&quot;/posts/2020/06/academic-website/&quot;&gt;creating an academic website&lt;/a&gt;. If you’ve followed that guide, you should have a website that’s professional-looking and informative, but it’s probably lacking &lt;em&gt;something&lt;/em&gt; to really make it feel like your own. There are an infinite number of ways you could customize the &lt;a href=&quot;https://academicpages.github.io/&quot;&gt;academicpages template&lt;/a&gt; (many of them far, far beyond my abilities) but I’m going to walk you through the process I used to start tweaking my website. The goal here isn’t to tell you how you should personalize your website, but to give you the tools to learn how to implement whatever changes you want to make.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;You’ll notice that the differences between my website and the template aren’t limited to my mug in the sidebar on the left. These differences are especially apparent if you compare my &lt;a href=&quot;https://jayrobwilliams.com/publications/&quot;&gt;publications&lt;/a&gt; page with the &lt;a href=&quot;https://academicpages.github.io/publications/&quot;&gt;template’s&lt;/a&gt;. You’ll notice on my page that article titles no longer link to separate pages and I’ve got fancy icons like &lt;i class=&quot;fas fa-fw fa-file-pdf&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; to link to my PDF copy and &lt;i class=&quot;fa fa-fw fa-link&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; to link to the version of record.&lt;/p&gt;
+
+&lt;p&gt;I’ve made several minor changes from the template to make my website feel a bit more like my own. These tweaks are varyingly difficult to accomplish, but they all involve a bit of trial and error. While academicpages is a great template, the accompanying documentation isn’t &lt;em&gt;particularly&lt;/em&gt; useful if you want to make any changes that go beyond content into formatting. Thus, each new tweak I implement begins with something of a scavenger hunt.&lt;/p&gt;
+
+&lt;p&gt;Essentially, you need to track down where in the source code of your website a variable is originally defined, and then edit it there. Luckily, RStudio makes this relative straightforward with its Find in Files function. You can access this special search from the Edit menu, or by pressing &lt;kbd&gt;Cmd&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;c&lt;/kbd&gt; on MacOS or &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;c&lt;/kbd&gt; otherwise. Once you’ve brought up the Find in Files dialog, enter the name of the variable you’re looking for in the ‘Find’ box and your website’s directory in the ‘Search in’ box (for me that’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Dropbox/Website&lt;/code&gt;).&lt;/p&gt;
+
+&lt;h1 id=&quot;easier-on-the-eyes&quot;&gt;Easier on the eyes&lt;/h1&gt;
+
+&lt;p&gt;One thing I don’t like about the template’s settings out of the box is the font size in highlighted code blocks. It’s way too small! While small the small font size makes it more likely that an entire line of code will fit on a screen without having to scroll, how useful is that if you have to squint to see what’s there?&lt;/p&gt;
+
+&lt;p&gt;My first order of business in customizing my site was thus to increase the font size used in code blocks. I know that code highlighting functions are often referred to as syntax highlighters. Using this knowledge, I searched for “syntax” using the Find in Files dialog as seen below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/customizing-website/findin-syntax.png&quot; alt=&quot;&quot; width=&quot;50%&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The most relevant hit is a file called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/syntax.scss&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass&lt;/code&gt; directory is where you’ll find lots of options to change the appearance of your site since it contains the &lt;a href=&quot;https://en.wikipedia.org/wiki/Cascading_Style_Sheets&quot;&gt;CSS&lt;/a&gt; code that determines much of how your site looks. If you scroll through &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/syntax.scss&lt;/code&gt;, this chunk of code controls how text is rendered in code boxes:&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.highlight&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$monospace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$type-size-7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;line-height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We’ve found our next clue! We need to figure out where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$type-size-7&lt;/code&gt; is defined. If you do a Find in Files search for that, you’ll learn it’s in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/variables.scss&lt;/code&gt;. Open that file and &lt;kbd&gt;Cmd&lt;/kbd&gt;+&lt;kbd&gt;f&lt;/kbd&gt; (&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;f&lt;/kbd&gt; not on a Mac) for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$type-size-7&lt;/code&gt;, and you’ll find this chunk of code:&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* type scale */&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$type-size-1&lt;/span&gt;                &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.441em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// ~39.056px&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$type-size-2&lt;/span&gt;                &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.953em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// ~31.248px&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$type-size-3&lt;/span&gt;                &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.563em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// ~25.008px&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$type-size-4&lt;/span&gt;                &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.25em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// ~20px&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$type-size-5&lt;/span&gt;                &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// ~16px&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$type-size-6&lt;/span&gt;                &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.75em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// ~12px&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$type-size-7&lt;/span&gt;                &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.6875em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ~11px&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$type-size-8&lt;/span&gt;                &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.625em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// ~10px&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here’s where font sizes are defined for the &lt;em&gt;entire&lt;/em&gt; website! Luckily the code is well-commented, so we know that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$type-size-7&lt;/code&gt; used in code blocks $\approx$ 11 pixels high. I first tried setting it to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$type-size-5&lt;/code&gt;, but that was too big for my tastes. Alas &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$type-size-6&lt;/code&gt; was too small, and so I resolved to make my own.&lt;/p&gt;
+
+&lt;p&gt;The font sizes are defined in &lt;a href=&quot;https://en.wikipedia.org/wiki/Em_(typography)&quot;&gt;ems&lt;/a&gt; (a unit of typography you’re no doubt familiar with if you’ve also spent too much time mucking about with LaTeX) so it’s easy to create a new one. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$type-size-6&lt;/code&gt; is 0.75 ems and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$type-size-5&lt;/code&gt; is 1 em, so to find the exact middle of them we can do&lt;/p&gt;
+
+&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;.75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;## [1] 0.875
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now all we have to do is define our new font size in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/variables.scss&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$type-size-syntax&lt;/span&gt;           &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.875em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// ~14px&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and tell the site to use it in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/syntax.scss&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.highlight&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$monospace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$type-size-syntax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;line-height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Save all these changes, restart your local webserver with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt; (or wait for it to rebuild and reload if it was already running) and check out the changes. If everything went smoothly, you should have larger and easier to read text in any code blocks on your website.&lt;/p&gt;
+
+&lt;h1 id=&quot;fixing-fancy-icons&quot;&gt;Fixing fancy icons&lt;/h1&gt;
+
+&lt;p&gt;While you’re messing around in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/syntax.scss&lt;/code&gt;, there’s another easy fix that I highly recommend doing. The version of the template at the time I’m writing this has a small error in this file that prevents code boxes from rendering properly. You may be wondering why code boxes have a small square in the top right corner of them; I know I was. Take a look below for an example of this from my &lt;a href=&quot;/software&quot;&gt;software&lt;/a&gt; page:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/customizing-website/box.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It turns out there’s supposed to be a little ‘code’ icon there, like this &lt;i class=&quot;fa fa-code&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;. I did some digging on Stack Overflow, and found &lt;a href=&quot;https://stackoverflow.com/a/20782415/&quot;&gt;this answer&lt;/a&gt;, which told me that there’s an error with how &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/syntax.scss&lt;/code&gt; references the &lt;a href=&quot;https://fontawesome.com/&quot;&gt;Font Awesome&lt;/a&gt; library the icon comes from.&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.5em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lighter-gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;\f121&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;fontawesome&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$type-size-6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;line-height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;text-transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;font-family&lt;/code&gt; line should be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;font-family: &quot;Font Awesome 5 Free&quot; !important;&lt;/code&gt;. Once you’ve made this change, the icon should show up.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/customizing-website/icon.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve submitted a &lt;a href=&quot;https://github.com/academicpages/academicpages.github.io/pull/389&quot;&gt;pull request&lt;/a&gt; fixing the issue, so if you’re reading this in the future hopefully it’s been fixed in the template and you have no idea what I’m talking about.&lt;/p&gt;
+
+&lt;h1 id=&quot;adding-some-color&quot;&gt;Adding some color&lt;/h1&gt;
+
+&lt;p&gt;While we’re in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/variables.scss&lt;/code&gt;, there are a couple of other easy changes we can make. I never particularly liked the light blue that the template uses for links. There’s a section in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/variables.scss&lt;/code&gt; that controls what color links appear as.&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* links */&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$link-color&lt;/span&gt;                 &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$info-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$link-color-hover&lt;/span&gt;           &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mh&quot;&gt;#000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$link-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;25%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$link-color-visited&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mh&quot;&gt;#fff&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$link-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;25%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$masthead-link-color&lt;/span&gt;        &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$primary-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$masthead-link-color-hover&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mh&quot;&gt;#000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$primary-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;25%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Looking at this code, we can see that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$link-color&lt;/code&gt; is defined as the same as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$info-color&lt;/code&gt;. Further up, this is defined as&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$info-color&lt;/span&gt;                 &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;#52adc8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll notice that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$info-color&lt;/code&gt; is defined with an alphanumeric string and not in a more familiar format like RGB. That’s because it’s a web color in &lt;a href=&quot;https://en.wikipedia.org/wiki/Web_colors&quot;&gt;hexadecimal format&lt;/a&gt;. If you Google search &lt;a href=&quot;https://www.google.com/search?q=color+picker&quot;&gt;color picker&lt;/a&gt; you’ll find a handy little applet where you can preview different hex colors or even convert from RGB to hex representation. Since I am a postdoc, I decided to just use my institution’s colors. If you change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$info-color&lt;/code&gt; to any other color it will change the color of links across your website. Remember to wait for your webserver to reload the changes, otherwise you won’t be able to see them&lt;/p&gt;
+
+&lt;h1 id=&quot;pushing-buttons&quot;&gt;Pushing buttons&lt;/h1&gt;
+
+&lt;p&gt;The pages where I present my research highlight one of the other big changes I’ve made to my site. The buttons I use to link to papers and replication archives (see &lt;a href=&quot;/research/measurement/#article&quot;&gt;here&lt;/a&gt; for an example) are not part of the template. I’d originally just used text links here, and thought using some buttons instead might liven up the page a bit. Unfortunately, the default buttons defined in the Academicpages template don’t fit super well given the other changes I’ve made.&lt;/p&gt;
+
+&lt;p&gt;The default button looks like &lt;a href=&quot;#Buttons&quot; class=&quot;btn&quot;&gt;this&lt;/a&gt;, which is fine, but doesn’t fit with a more colorful custom theme. My new themed button looks like &lt;a href=&quot;#Buttons&quot; class=&quot;btn--research&quot;&gt;this&lt;/a&gt;, which fits a little better and has less space around it.&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;While both buttons have a nice hover effect where they change color to let you know you’re over them, the second one incorporates the site’s accent color and is a bit more dynamic since the text changes color in addition to the background. Like most things CSS, buttons are defined in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass&lt;/code&gt; directory in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/buttons.scss&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are lots of existing button types defined here, but we want to create our own. You can edit the default button styling in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/buttons.scss&lt;/code&gt;. If we redefine the existing base button class, we can end up with all kinds of weird side effects for other elements of the site, like the social media share buttons at the bottom of this post. To do this, we’ll define a new button &lt;em&gt;subclass&lt;/em&gt;, which inherits the aspects of a button on the site but only uses the special behavior when we explicitly tell a button to do so.&lt;/p&gt;
+
+&lt;p&gt;After some time poking around the &lt;a href=&quot;https://www.w3schools.com&quot;&gt;W3Schools&lt;/a&gt; page on &lt;a href=&quot;https://www.w3schools.com/css/css3_buttons.asp&quot;&gt;buttons&lt;/a&gt;, and a lot of trial and error, I came up with the following CSS code:&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* research page buttons */&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--research&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inline-block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin-bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.25em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.125em&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.25em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$link-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;text-decoration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;solid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;border-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$link-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;cursor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;pointer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;#fff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$link-color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The key parts are&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;color: $link-color;&lt;/code&gt;: use the site accent color for the text&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;text-decoration: none !important;&lt;/code&gt;: don’t underline the button text&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;border: 1px solid;&lt;/code&gt;: draw a one pixel border around the button&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;border-color: $link-color;&lt;/code&gt;: use the site accent color for the border&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;border-radius: $border-radius;&lt;/code&gt;: use a four pixel radius for the border (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$border-radius&lt;/code&gt; is defined in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/variables.scss&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To add a button to a page, you simply tack on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{: .btn--research}&lt;/code&gt; after a link, like so&lt;/p&gt;
+
+&lt;div class=&quot;language-md highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;#Buttons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;{: .btn--research}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;going-forward&quot;&gt;Going forward&lt;/h1&gt;
+
+&lt;p&gt;This is just a brief overview of the ways you can tweak your website from the base provided by the template. Let Google and Stack Overflow be your guides. There will be some trial and error, but the beauty of git is that even if you break something it’s easy to roll back to changes to when everything was working.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/customizing-website/so.jpeg&quot; alt=&quot;&quot; width=&quot;50%&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;You’ll notice that this button is &lt;em&gt;very&lt;/em&gt; similar to the ones that the &lt;a href=&quot;https://academic-demo.netlify.app/#publications&quot;&gt;Hugo Academic theme&lt;/a&gt; uses. Just because I don’t like the theme as a whole doesn’t mean there aren’t really elegant parts of it. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="website" /><category term="git" /><category term="github" /><summary type="html">Please note that this blog is forwarded from Dr. Rob Williams in order to assit my friends especially in China in building his/her own academic website. This is a followup to my previous post on creating an academic website. If you’ve followed that guide, you should have a website that’s professional-looking and informative, but it’s probably lacking something to really make it feel like your own. There are an infinite number of ways you could customize the academicpages template (many of them far, far beyond my abilities) but I’m going to walk you through the process I used to start tweaking my website. The goal here isn’t to tell you how you should personalize your website, but to give you the tools to learn how to implement whatever changes you want to make.</summary></entry><entry><title type="html">Building an Academic Website</title><link href="http://localhost:4000/posts/2020/06/academic-website/" rel="alternate" type="text/html" title="Building an Academic Website" /><published>2020-06-30T00:00:00-05:00</published><updated>2020-06-30T00:00:00-05:00</updated><id>http://localhost:4000/posts/2020/06/academic-website</id><content type="html" xml:base="http://localhost:4000/posts/2020/06/academic-website/">&lt;p&gt;Please note that this blog is forwarded from &lt;a href=&quot;https://jayrobwilliams.com/&quot;&gt;Dr. Rob Williams&lt;/a&gt; in order to assit my friends especially in China in building his/her own academic website.&lt;/p&gt;
+
+&lt;p&gt;If you’re an academic, you need a website. Obviously I agree with this since you’re reading this on my website, but if you don’t have one, you should get one. Most universities these days provide a free option, usually powered by &lt;a href=&quot;https://wordpress.org/&quot;&gt;WordPress&lt;/a&gt; (both &lt;a href=&quot;https://sites.wustl.edu/&quot;&gt;WashU&lt;/a&gt; and &lt;a href=&quot;http://web.unc.edu/&quot;&gt;UNC&lt;/a&gt; use WordPress for their respective offerings). While these sites are quick to set up and come with the prestige of a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.edu&lt;/code&gt; URL, they have several drawbacks that have been &lt;a href=&quot;https://townsendcenter.berkeley.edu/blog/personal-academic-webpages-how-tos-and-tips-better-site&quot;&gt;extensively&lt;/a&gt; &lt;a href=&quot;https://martinlea.com/four-reasons-why-faculty-profile-pages-are-no-substitute-for-personal-academic-website/&quot;&gt;written&lt;/a&gt; &lt;a href=&quot;https://theacademicdesigner.com/2019/personal-academic-website-benefits/&quot;&gt;on&lt;/a&gt;.
+&lt;!--more--&gt;
+If you’re a junior scholar, having your own personal webpage is even more important:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If (when) you move institutions, you’ll lose your website&lt;/li&gt;
+  &lt;li&gt;Even if you can export the contents of a WordPress site, there’s no guarantee it will seamlessly integrate with another university’s implementation&lt;/li&gt;
+  &lt;li&gt;Even worse, you’ll lose your search engine ranking since you’ll be starting over from square one with a new URL&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Even if you stay at the same institution for the rest of your career, you’re at the mercy of IT and your site may be taken down by a change to the hosting platform at some point in the future.&lt;/p&gt;
+
+&lt;h1 id=&quot;my-approach&quot;&gt;My approach&lt;/h1&gt;
+
+&lt;p&gt;There are plenty of guides out there on how to create a personal website using tools like WordPress, &lt;a href=&quot;https://www.wix.com&quot;&gt;Wix&lt;/a&gt;, or &lt;a href=&quot;https://www.sites.google.com/&quot;&gt;Google Sites&lt;/a&gt;. The free versions of these tools often come with ads, or at the least a message telling you which tool was used to create the website. I take a different approach that requires some (minimal) coding experience, but produces a beautiful and professional website that is ad free. I use a &lt;a href=&quot;https://www.staticgen.com/about&quot;&gt;static site generator&lt;/a&gt; that produces HTML from easy to edit &lt;a href=&quot;https://en.wikipedia.org/wiki/Markdown&quot;&gt;Markdown&lt;/a&gt; files. Because the resulting site is static (it’s just a collection of files with no interactivity where users can .e.g, fill out and submit forms) it can be hosted for free with &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;. &lt;a href=&quot;http://svmiller.com&quot;&gt;Steven Miller&lt;/a&gt; has a nice rundown on all of the &lt;a href=&quot;http://svmiller.com/blog/2015/08/create-your-website-in-jekyll/#advantages&quot;&gt;advantages&lt;/a&gt; of this approach.&lt;/p&gt;
+
+&lt;h2 id=&quot;who-this-guide-is-for&quot;&gt;Who this guide is for&lt;/h2&gt;
+
+&lt;p&gt;This guide is intended for someone with a basic level of coding experience and comfort with Markdown files. Anyone who’s received graduate training in quantitative social science in the past few years should have all the necessary skills. I’m assuming some familiarity with using the &lt;a href=&quot;https://en.wikipedia.org/wiki/Terminal_emulator&quot;&gt;terminal&lt;/a&gt;, but no experience with Git or GitHub is needed.&lt;/p&gt;
+
+&lt;p&gt;There are other guides to using static site generators to make academic websites, but they all assume a very high level of experience with the required tools and the ability to conduct extensive troubleshooting on your own. The template I use contains a 6 point checklist with no illustrations or examples. I’ve written this guide for people who have some experience coding, but don’t want to spend an afternoon learning two new languages on their own. If you know how to use R Markdown you have all the skills you need to build a website.&lt;/p&gt;
+
+&lt;h2 id=&quot;conventions&quot;&gt;Conventions&lt;/h2&gt;
+
+&lt;p&gt;In this tutorial, I use a couple of conventions to describe computer code and the actions you’ll do with it. Anytime you see content between two angle brackets, you should replace the content with the appropriate version for yourself. For example, &amp;lt;yourusername&amp;gt; would become jayrobwilliams for me, because that is my GitHub username. You’ll also frequently see&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;highlighted code blocks like this
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;with this icon &lt;i class=&quot;fa fa-code&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; in the top right corner. These can denote either code you should enter and run, or the output of running a command. I will clearly state which of these options applies in any given case. Sometimes you will also see &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;inline code&lt;/code&gt; like this, and again I’ll note whether these represent code you should run, or the output of code.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A brief aside on Git-speak: these periodic indented blocks will explain the terminology that Git uses to help you understand what each Git command actually does.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;getting-started&quot;&gt;Getting started&lt;/h1&gt;
+
+&lt;p&gt;Two of the most popular programs available for building static sites from Markdown files are &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; and &lt;a href=&quot;https://gohugo.io/&quot;&gt;Hugo&lt;/a&gt;. Relevant for us is that each one has a full-featured theme for academic websites that you’ve probably seen before. There are plenty of differences under the hood, but the most important one for building an academic website is that Hugo integrates nicely with the &lt;a href=&quot;https://bookdown.org/yihui/blogdown/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;blogdown&lt;/code&gt;&lt;/a&gt; R package, letting you write your website entirely in R. I chose Jekyll over Hugo because I liked the &lt;a href=&quot;https://academicpages.github.io/&quot;&gt;Jekyll theme&lt;/a&gt; better than the &lt;a href=&quot;https://academic-demo.netlify.app/&quot;&gt;Hugo one&lt;/a&gt;. My life might have been easier if I’d gone with Hugo and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;blogdown&lt;/code&gt;, but here we are. Consequently, this tutorial will show you how to set up an academic website using Jekyll.&lt;/p&gt;
+
+&lt;h2 id=&quot;github&quot;&gt;GitHub&lt;/h2&gt;
+
+&lt;p&gt;The first thing you need to do is create a GitHub account if you don’t already have one. If you do have one, great! If you don’t already have an account, think about your username carefully. Unless you set up a custom domain name (which we’ll cover in a separate post), your website’s URL will be &amp;lt;yourusername&amp;gt;.github.io. Setting up a custom domain name is a little trick and isn’t free, so pick a username that works as a URL as well.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Git-speak aside: the basic unit of GitHub is the &lt;em&gt;repository&lt;/em&gt;. Repositories are just folders (directories, if you want to be pedantic), but Git keeps a record of the files in the folders. We’ll start by making a repository on GitHub and then later download that repository to our computer. In both cases, it’s just a folder. The magic of Git is that we can link the two so that changes you make in your local repository (the one on your computer) will sync with the remote repository (the one on GitHub). When people (myself included) get lazy, they’ll often shorten repository to ‘repo’.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Once you’ve logged into GitHub, the next step is to head over to the &lt;a href=&quot;https://github.com/academicpages/academicpages.github.io&quot;&gt;repository&lt;/a&gt; for the template we’ll be using. We need to copy the template so we can get our own version that we can mess around with. In GitHub parlance we need to &lt;em&gt;fork&lt;/em&gt; the template repository to get our own copy. Find the Fork button at the top right of the template repository (highlighted in green below), and click it.&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/fork.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After a brief wait (and an amusing GIF), you’ll land at your forked copy of the repo. If you look closely, you’ll notice that the name in the top left has changed. Where it originally said “academicpages/academicpages.github.io” it should now read “&amp;lt;yourusername&amp;gt;/academicpages.github.io”. As you can see below, for me this is now “jayrobwilliams/academicpages.github.io”. We need to change this! Not just so people know that this is your website, but to get it online. Click the Settings button with the &lt;i class=&quot;fa fa-fw fa-cog&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; icon (highlighted in green below).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/settings.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This will, unsurprisingly, take you to the Settings page. The very first option (highlighted in green below) is the repository name, and that’s all we need to worry about now. It should look like this, with &amp;lt;yourusername&amp;gt; in place of jayrobwilliams before the .github.io. Now, we need to change the repository name to &amp;lt;yourusername&amp;gt;.github.io. It’s important that the first part of the repo name &lt;em&gt;exactly&lt;/em&gt; match your GitHub username, or you’ll run into trouble later when putting your website online.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/rename.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In my case, I renamed the repo to “jayrobwilliams.github.io” because my GitHub username is jayrobwilliams.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/renamed.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We’ve told GitHub that this repository is for our website, so now it’s time to start working on that website. To do that, we need to get the files for our website into our computer.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/zoolander.gif&quot; alt=&quot;&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;git&quot;&gt;Git&lt;/h2&gt;
+
+&lt;p&gt;Since we’re going to host our website on GitHub, you’ll need to make sure you have &lt;a href=&quot;https://git-scm.com/&quot;&gt;Git&lt;/a&gt; installed. Git is a version control system designed to let teams of programmers collaborate on projects seamlessly. For us, it’s just going to be the way that we upload files for our webpage to GitHub. You can download Git from the &lt;a href=&quot;https://git-scm.com/downloads&quot;&gt;official downloads page&lt;/a&gt;, but there are a couple of easier ways. If you’re on MacOS, you can install Git via the Xcode Command Line Tools by running&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xcode-select &lt;span class=&quot;nt&quot;&gt;--install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This has the advantage of also installing a Ruby development environment, which we’ll need later. If you’re on Windows, you should download &lt;a href=&quot;https://gitforwindows.org/&quot;&gt;Git Bash&lt;/a&gt;. While the Git you’ll get from the official website will work just fine, Git Bash emulates a Unix terminal, meaning that you’ll use Unix commands instead of the Windows commands you’d use in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cmd.exe&lt;/code&gt;. Why is this useful? I use MacOS and Linux, so this tutorial is written from that perspective. Beyond my laziness in not providing the equivalent Windows commands alongside the Unix ones, most Git related information you’ll find online at places like &lt;a href=&quot;https://stackoverflow.com/questions/tagged/git&quot;&gt;Stack Overflow&lt;/a&gt; will be written for a Unix audience. By using Git Bash, you’ll be able to follow any advice you find and not have to translate it into Windows commands. Most (all??) Linux distributions ship with Git, so you should be good to go if you’re using Linux.&lt;/p&gt;
+
+&lt;p&gt;Now that you’ve got Git, you can download the files that will make up your website to your compute. To do that, we’ll &lt;em&gt;clone&lt;/em&gt; the repository from GitHub to our computer.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Git-speak aside: cloning a repository means creating a local repository (folder) on your computer that’s connected to the remote repository (on GitHub). Cloning differs from downloading in that you are setting up a connection between the two folders so you can keep changes you make locally synced up with the remote repository (which is where GitHub will build your website from).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Find the green Clone or Download button on the right side of your repository’s page (highlighted in green below). When you click it, a dialog will pop up that contains the URL you will use to clone your repository to your computer. Click the clipboard icon to the right, and the URL will be copied to your clipboard.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/clone.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you’ve done that, open a terminal and navigate to where you want your website’s folder to live. I keep mine at the top level of my Dropbox, so I would type&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Dropbox
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;to navigate there. Use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pwd&lt;/code&gt; command to verify you’re in the right place; if you’re also putting your website at the top level of your dropbox, the output should be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/Users/&amp;lt;yourusername&amp;gt;/Dropbox/&lt;/code&gt;. Now it’s time to clone our GitHub repo to our computer and create our local repo.&lt;/p&gt;
+
+&lt;p&gt;Do this by typing&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/&amp;lt;yourusername&amp;gt;/&amp;lt;yourusername&amp;gt;.github.io.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and running it. This will create a folder called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;yourusername&amp;gt;.github.io&lt;/code&gt;, which is honestly kind of clunky and not instantly informative when you’re scanning through your files. To give it a more informative name e.g, Website, run&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/&amp;lt;yourusername&amp;gt;/&amp;lt;yourusername&amp;gt;.github.io.git Website
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Adding &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Website&lt;/code&gt; at the end will clone the GitHub repo into a folder called ‘Website’ instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;yourusername&amp;gt;.github.io&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;making-it-yours&quot;&gt;Making it yours&lt;/h1&gt;
+
+&lt;p&gt;Now that you’ve got all the files needed to build your website on your computer, it’s time to start personalizing this generic template!&lt;/p&gt;
+
+&lt;h2 id=&quot;editing-pages&quot;&gt;Editing pages&lt;/h2&gt;
+
+&lt;p&gt;All of the actual content of your site is contained in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; files, which are Markdown files. Most of these files live in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages&lt;/code&gt; directory. The &lt;a href=&quot;https://academicpages.github.io/markdown/&quot;&gt;documentation&lt;/a&gt; that comes with the template is relatively straightforward, and does a pretty good job telling you how to customize your site. For example, the landing page can be changed by editing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages/about.md&lt;/code&gt; file and the sidebar information is controlled by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file. Let’s start by editing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; to rename put our name on the site and change the sidebar to reflect our information.&lt;/p&gt;
+
+&lt;p&gt;I’ve copied the first several lines of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; below:&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Welcome to Jekyll!&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# This config file is meant for settings that affect your entire site, values&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# which you are expected to set up once and rarely need to edit after that.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# For technical reasons, this file is *NOT* reloaded automatically when you use&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# `jekyll serve`. If you change this file, please restart the server process.&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Site Settings&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;locale                   &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;en-US&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;title                    &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Your&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Site&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Title&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;title_separator          &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;name                     &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;&amp;amp;name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Your&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Name&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;description              &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;&amp;amp;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;personal&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;description&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;url                      &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://academicpages.github.io&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the base hostname &amp;amp; protocol for your site e.g. &quot;https://mmistakes.github.io&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;baseurl                  &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the subpath of your site, e.g. &quot;/blog&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;repository               &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;academicpages/academicpages.github.io&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;teaser                   &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# filename of teaser fallback teaser image placed in /images/, .e.g. &quot;500x300.png&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;breadcrumbs              &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# true, false (default)&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;words_per_minute         &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;160&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;future                   &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;read_more                &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;disabled&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# if enabled, adds &quot;Read more&quot; links to excerpts&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;talkmap_link             &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#change to true to add&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll want to change the following things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;Your Name / Site Title&quot;&lt;/code&gt; to your name&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;amp;name &quot;Your Name&quot;&lt;/code&gt; to your name&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://academicpages.github.io&lt;/code&gt; to the name of your repository (and also your github username) i.e., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://&amp;lt;yourusername&amp;gt;.github.io&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;academicpages/academicpages.github.io&quot;&lt;/code&gt; to your GitHub username and the repo name i.e., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;&amp;lt;yourusername&amp;gt;/&amp;lt;yourusername&amp;gt;.github.io&quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When you’re finished, it should look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Welcome to Jekyll!&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# This config file is meant for settings that affect your entire site, values&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# which you are expected to set up once and rarely need to edit after that.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# For technical reasons, this file is *NOT* reloaded automatically when you use&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# `jekyll serve`. If you change this file, please restart the server process.&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Site Settings&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;locale                   &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;en-US&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;title                    &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;Your&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Name&amp;gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;title_separator          &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;name                     &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;&amp;amp;name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;Your&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Name&amp;gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;description              &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;&amp;amp;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;personal&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;description&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;url                      &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://&amp;lt;yourusername&amp;gt;.github.io&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the base hostname &amp;amp; protocol for your site e.g. &quot;https://mmistakes.github.io&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;baseurl                  &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the subpath of your site, e.g. &quot;/blog&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;repository               &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;yourusername&amp;gt;/&amp;lt;yourusername&amp;gt;.github.io&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;teaser                   &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# filename of teaser fallback teaser image placed in /images/, .e.g. &quot;500x300.png&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;breadcrumbs              &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# true, false (default)&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;words_per_minute         &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;160&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;future                   &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;read_more                &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;disabled&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# if enabled, adds &quot;Read more&quot; links to excerpts&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;talkmap_link             &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#change to true to add&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will put your name on the website and tell GitHub where to look for the files that make up your site. Now let’s check out our changes and make sure everything’s working like it’s supposed to!&lt;/p&gt;
+
+&lt;h2 id=&quot;previewing-your-website&quot;&gt;Previewing your website&lt;/h2&gt;
+
+&lt;p&gt;Once we upload our modified files to GitHub (and tell GitHub to turn them into a website, which we’ll cover below), they’re out there on the internet for everyone to see. If you’re like me, you’ll make a lot of mistakes when working on your website. There’s no need to broadcast all of those mistakes to the world, and we can avoid this very easily by previewing our website locally. What this means is building the site from the various &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; files, rendering it to HTML, and then viewing it. We can do all of that on our computer without ever having to put it online.&lt;/p&gt;
+
+&lt;p&gt;To preview your website locally, you’ll need to install Jekyll on your computer. The easiest way to do this is with &lt;a href=&quot;https://bundler.io/&quot;&gt;Bundler&lt;/a&gt;. Bundler is a package manager for Ruby, which is the programming language that Jekyll is written in. This means that we need a full Ruby development environment to get Jekyll working to run our website locally. If you’re on Windows, &lt;a href=&quot;https://rubyinstaller.org/&quot;&gt;RubyInstaller&lt;/a&gt; will give you everything you need. If you’re on MacOS, your computer comes with Ruby, but not the development headers required for Bundler to work. If you installed Git via the Xcode Command Line tools earlier, you’re good to go here. If not, you can install Ruby Ruby via &lt;a href=&quot;https://brew.sh&quot;&gt;Homebrew&lt;/a&gt; with&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ruby
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you’re on Linux, just install Ruby via your package manager. Once that’s taken care of, it’s time to install Bundler. Do so by running&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;in a terminal. If you’ve navigated away from the directory where your website is located (which is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Dropbox/Website&lt;/code&gt; for me), head back there now. Do this with&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Dropbox/Website
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;but replace &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/Dropbox/Website&lt;/code&gt; with the path to your website’s repo. Next, we need to install any packages (called ‘gems’ in Ruby) that Jekyll depends on. This is where Bundler shines by taking care of this whole process for us; it reads the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; included with the source code and installs all required gems&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you want to see what’s been installed, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gem list&lt;/code&gt; before and after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt;. If everything worked correctly, you can now launch your website! What we’re going to do is start a webserver on your computer, which will let you access your website locally without having to put it out on the internet. We do this with&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec&lt;/code&gt; command is just a prefix that lets ruby access all of the gems specified in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gemfile&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt; command builds your website and starts a webserver so that you can view it locally. To access your website, open a browser and go to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1:4000&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost:4000&lt;/code&gt;. It should look exactly like the &lt;a href=&quot;https://academicpages.github.io/&quot;&gt;example&lt;/a&gt; site.&lt;/p&gt;
+
+&lt;p&gt;This is a special version of your site that’s only accessible from your computer; no one else can see it! So this is the perfect place to play around, experiment, and see how to make your site do what you want it to. This process is surprisingly easy. Make a change to a file e.g., editing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages/about.md&lt;/code&gt; to introduce yourself, and save the file. That’s all you have to do; Jekyll will notice the change to the file and automatically rebuild the site. All that’s left to do is refresh your browser so you can see the changes!&lt;/p&gt;
+
+&lt;p&gt;Once you’ve made a couple changes to see how it works, you might want to turn off the webserver and make lots of changes, then check out your handiwork. Or maybe you’re just done working on your website for now. Either way, it’s time to shut down the webserver. To do so, you can just close the terminal window, but you’ll get a warning like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/terminate.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To save yourself some time and do this faster, simply press &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;c&lt;/kbd&gt;.&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;getting-online&quot;&gt;Getting online&lt;/h1&gt;
+
+&lt;p&gt;Alright, you’ve made some changes from the template, checked them out locally, and you’re ready to share your website with the world. This is a two step process. First we need to upload all of our modified files to the GitHub repo we forked from the template. Then we need to configure GitHub Pages to build and deploy our website. Finally, if you want a custom domain name, we need to do some configuration outside of GitHub Pages to connect your domain name with your website.&lt;/p&gt;
+
+&lt;h2 id=&quot;uploading-changes-to-github&quot;&gt;Uploading changes to GitHub&lt;/h2&gt;
+
+&lt;p&gt;To upload your changes to GitHub, we first have to make Git locally aware of them. We do this by committing the changes, then pushing them to the repo on GitHub&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Git-speak aside: Git stores file histories as a series of changes or differences. A batch of changes (which can include changes in one or more files) is called a &lt;em&gt;commit&lt;/em&gt;. When you want to tell the remote repo (the one on GitHub) about changes you’ve made, you &lt;em&gt;push&lt;/em&gt; a commit from the local repo to the remote one. Once you do this, GitHub looks at the differences and modifies the files in the remote repo.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Before we can commit the changes, we need to stage them. This just involves telling Git what changes we want to commit. To make our lives easier, let’s check in on what changes we’ve made&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You should get results that look something similar to this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use &quot;git add &amp;lt;file&amp;gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &amp;lt;file&amp;gt;...&quot; to discard changes in working directory)
+
+	modified:   _config.yml
+
+Untracked files:
+  (use &quot;git add &amp;lt;file&amp;gt;...&quot; to include in what will be committed)
+
+	Gemfile.lock
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can ignore the first part for now. The second part (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Changes not staged for commit&lt;/code&gt;) will list any files that Git knows about that have changed. The third part (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Untracked files&lt;/code&gt;) includes files we haven’t told Git about, so as far as it’s concerned they don’t exist. I’ve edited &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; to replace the template’s information with my own, so it shows up here. If you want to verify the changes you made, you’ll want to &lt;em&gt;diff&lt;/em&gt; the file. Do this with&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git diff _config.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is what the output looked like for me. Note that your output may or may not be color-coded depending on what type of system you’re on and your Git settings.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gh&quot;&gt;diff --git a/_config.yml b/_config.yml
+index 1dc605c..4affb4e 100644
+&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;--- a/_config.yml
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+++ b/_config.yml
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@@ -7,13 +7,13 @@&lt;/span&gt;
+ 
+ # Site Settings
+ locale                   : &quot;en-US&quot;
+&lt;span class=&quot;gd&quot;&gt;-title                    : &quot;Your Name / Site Title&quot;
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+title                    : &quot;Rob Williams&quot;
+&lt;/span&gt; title_separator          : &quot;-&quot;
+&lt;span class=&quot;gd&quot;&gt;-name                     : &amp;amp;name &quot;Your Name&quot;
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+name                     : &amp;amp;name &quot;Rob Williams&quot;
+&lt;/span&gt; description              : &amp;amp;description &quot;personal description&quot;
+&lt;span class=&quot;gd&quot;&gt;-url                      : https://academicpages.github.io # the base hostname &amp;amp; protocol for your site e.g. &quot;https://mmistakes.github.io&quot;
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+url                      : https://jayrobwilliams.github.io # the base hostname &amp;amp; protocol for your site e.g. &quot;https://mmistakes.github.io&quot;
+&lt;/span&gt; baseurl                  : &quot;&quot; # the subpath of your site, e.g. &quot;/blog&quot;
+&lt;span class=&quot;gd&quot;&gt;-repository               : &quot;academicpages/academicpages.github.io&quot;
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+repository               : &quot;jayrobwilliams/jayrobwilliams.github.io&quot;
+&lt;/span&gt; teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. &quot;500x300.png&quot;
+ breadcrumbs              : false # true, false (default)
+ words_per_minute         : 160
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Each line that begins with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+&lt;/code&gt; indicates an insertion and each line that starts with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-&lt;/code&gt; is a deletion. You can see that I’ve just replaced the generic information with mine. Now that we’re confident in the changes we made to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;, we need to tell Git to record them. We first stage the file with&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add _config.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;which stages the file. If we re-run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git status&lt;/code&gt;, we’ll see&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use &quot;git reset HEAD &amp;lt;file&amp;gt;...&quot; to unstage)
+
+	modified:   _config.yml
+
+Untracked files:
+  (use &quot;git add &amp;lt;file&amp;gt;...&quot; to include in what will be committed)
+
+	Gemfile.lock
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll notice that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; has moved from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Changes not staged for commit&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Changes to be committed&lt;/code&gt; (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Changes not staged for commit&lt;/code&gt; has disappeared since we haven’t made any changes to other files that Git is tracking). Now we’re finally ready to commit our changes!&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;add my info to config file&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This tells Git to record the changes we made to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-m &quot;add my info to config file&quot;&lt;/code&gt; is the &lt;em&gt;commit message&lt;/em&gt; for this commit.&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; You should see something like this, but with a different number after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; on the first line.&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[master a8af7b1] add my info to config file
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That means our changes have been recorded locally by Git. Once we’ve committed our changes to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;, it’s time to upload them to GitHub! We do this by pushing the changes to GitHub, which will then modify its copies of the files to match ours. This is (relatively) straightforward&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Git will then prompt you for your username and password.&lt;sup id=&quot;fnref:5&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; This will be your GitHub username and password. Enter each of them and you should be good to go! If everything goes smoothly, you will see a message something like this&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 426 bytes | 426.00 KiB/s, done.
+Total 5 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To github.com:jayrobwilliams/jayrobwilliams.github.io.git
+   83c3bc4..a8af7b1  master -&amp;gt; master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is just Git telling you exactly how it recorded the changes and uploaded them to GitHub, the content of it doesn’t matter and you can ignore it. If things don’t go smoothly, you may get an error that looks something like this&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fatal: No configured push destination.
+Either specify the URL from the command-line or configure a remote repository using
+
+    git remote add &amp;lt;name&amp;gt; &amp;lt;url&amp;gt;
+
+and then push using the remote name
+
+    git push &amp;lt;name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Your repo on github is the “remote” that your local Git needs access to. To fix this error, we just need to tell Git where to find the remote&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote add origin https://github.com/&amp;lt;yourusername&amp;gt;/&amp;lt;yourusername&amp;gt;.github.io.git
+git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The next step is to go to GitHub and check our your changed file. Head back to your repository (https://github.com/&amp;lt;yourusername&amp;gt;/&amp;lt;yourusername&amp;gt;.github.io, as a reminder) and click the commits button at the bottom left (highlighted in green below).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/commits.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On the commits page, you should see the commit you just made&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/commit.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you do, then you’re all set.&lt;/p&gt;
+
+&lt;h2 id=&quot;going-live&quot;&gt;Going live&lt;/h2&gt;
+
+&lt;p&gt;All that’s left to do now is take our website live. If using git on the command line has been stressing you out, you’ll be glad to know that this part happens entirely in your browser.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/live.gif&quot; alt=&quot;&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You want to go back to the settings page for your repo (the button with the &lt;i class=&quot;fa fa-fw fa-cog&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; at the top right of the page) since that’s where we’ll turn this collection of files into a website. Scroll down until you get to the GitHub Pages section Click the dropdown currently labeled “None” under the “Source” subheading, and choose “master branch” from the popup (highlighted in green below).&lt;sup id=&quot;fnref:6&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/pages.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you do this, the page should reload. Scroll back down to the “GitHub Pages” heading, and there should be a message at the top that “Your site is ready to be published at http://&amp;lt;yourusername&amp;gt;.github.io/”. You can see what this looks like for me below&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/publish.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, here’s where things may get a little tricky. Go to http://&amp;lt;yourusername&amp;gt;.github.io/ and see if there’s a website there. If there is, skip down to the last section below. If not, go back to the settings page for your repo and see if there’s still a “ready to be published” message. If there is, you may have to push an additional change to the repo to trigger building your site. Editing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages/about.md&lt;/code&gt; to personalize the welcome message and short biography is a good candidate here. Once you’ve personalized your site’s landing page, record the changes and push them to the repo&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add _pages/about.md
+git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;edit welcome page&quot;&lt;/span&gt;
+git push
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then head back to the repo’s settings page and see if the “ready to be published” message has changed to “&lt;i class=&quot;fa fa-fw fa-check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; Your site is published at http://&amp;lt;yourusername&amp;gt;.github.io/”. You can see what this looks like for my website below&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/creating-website/published.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You’ll notice that the URL for my site is http:/jayrobwilliams.com, not http:/jayrobwilliams.github.io. That’s because I’ve bought a custom domain name for my site. While this does make your website seem slightly more profession, it’s not free (unlike .github.io) and it can be a little tricky to set up. I’ll cover how to get a custom domain name for your site in a future post.&lt;/p&gt;
+
+&lt;h1 id=&quot;next-steps&quot;&gt;Next steps&lt;/h1&gt;
+
+&lt;p&gt;Congratulations! You now have a professional looking academic website that’s yours forever; you won’t lose access to it when you leave your current institution. At this point you should continue making it your own by adding information on your research projects (edit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; files in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_portfolio&lt;/code&gt; folder to have them populate the Portfolio page with information on each of your research projects), teaching experience (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages/teaching.md&lt;/code&gt;), and accomplishments (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages/cv.md&lt;/code&gt;). Remember that you can preview any changes locally with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jeykll serve&lt;/code&gt;. If you add any new files, like PDFs of your working papers or publications, be sure to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git add&lt;/code&gt; them as well, so that they’ll be uploaded to your repo with the next &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git push&lt;/code&gt;. You may have noticed that there are lots of small differences between my website and the template, and not just in terms of content. In a future post, I’ll talk about how to further customize the look of your site to make it feel more unique.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;GitHub might look a little different for you since it recently went through a &lt;a href=&quot;https://github.blog/changelog/2020-06-23-design-updates-to-repositories-and-github-ui/&quot;&gt;redesign&lt;/a&gt;. Everything you’re looking for is still there and should be recognizable from the images. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Yes, even if you’re on MacOS; &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;c&lt;/kbd&gt; has been the way to cancel programs on the command line since the 1960s while the &lt;kbd&gt;&amp;#8984;&lt;/kbd&gt; key did not exist on computers until the Macintosh in &lt;a href=&quot;https://en.wikipedia.org/wiki/Command_key#Origin_of_the_symbol&quot;&gt;1984&lt;/a&gt;, and the terminal is olddd. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Yes, you can omit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-m &quot;...&quot;&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git commit&lt;/code&gt;, but it will open up your system’s default editor (likely vim, emacs, or nano), none of which are remotely beginner-friendly. Until you decide to learn one of them, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git commit -m&lt;/code&gt; is perfectly fine. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;This is the &lt;em&gt;hash&lt;/em&gt; for the commit; it’s a 40 digit string that uniquely identifies the changes that you’re committing. This is useful if you want to retrace your steps or undo things in the &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;If you’ve set up &lt;a href=&quot;https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh&quot;&gt;SSH authentication&lt;/a&gt; for GitHub, then you won’t be prompted to enter your credentials. &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:6&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Ignore the “Choose a theme” button; it’s for use with bare bones GitHub pages sites and the academicpages template supplies all the components for its theme. &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Yubin Wang</name><email>yubin.wang@kaust.edu.sa</email></author><category term="website" /><category term="git" /><category term="github" /><summary type="html">Please note that this blog is forwarded from Dr. Rob Williams in order to assit my friends especially in China in building his/her own academic website. If you’re an academic, you need a website. Obviously I agree with this since you’re reading this on my website, but if you don’t have one, you should get one. Most universities these days provide a free option, usually powered by WordPress (both WashU and UNC use WordPress for their respective offerings). While these sites are quick to set up and come with the prestige of a .edu URL, they have several drawbacks that have been extensively written on.</summary></entry></feed>

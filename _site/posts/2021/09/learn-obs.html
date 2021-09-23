@@ -1,0 +1,1035 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Brief Report of Learning-Based Observer - Yubin Wang</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Yubin Wang">
+<meta property="og:title" content="Brief Report of Learning-Based Observer">
+
+
+  <link rel="canonical" href="http://localhost:4000/posts/2021/09/learn-obs">
+  <meta property="og:url" content="http://localhost:4000/posts/2021/09/learn-obs">
+
+
+
+  <meta property="og:description" content="This report serves as my group meeting materials at EMANG in August,27. This article is about using the end-to-end approach of Deep Learning to compute the transformation which is incredibly essential for KKL observer. For simple, this article dives into this field through the aspect of autonomous systems and then the work is extended to non-autonomous systems with an excitation.">
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="http://localhost:4000/images/posts/geom-sf-facet/shared_legend_right-1.png">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2021-09-12T00:00:00-05:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Yubin Wang",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Yubin Wang Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    
+
+<!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72.png?v=20201130">
+<link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114.png?v=20201130">
+<link rel="apple-touch-icon" sizes="120x120" href="http://localhost:4000/images/apple-touch-icon-120x120.png?v=20201130">
+<link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144.png?v=20201130">
+<link rel="apple-touch-icon" sizes="152x152" href="http://localhost:4000/images/apple-touch-icon-152x152.png?v=20201130">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png?v=20201130">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png?v=20201130" sizes="32x32">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/android-chrome-192x192.png?v=20201130" sizes="192x192">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-16x16.png?v=20201130" sizes="16x16">
+<link rel="manifest" href="http://localhost:4000/images/manifest.json?v=20201130">
+<link rel="mask-icon" href="http://localhost:4000/images/safari-pinned-tab.svg?v=20201130" color="#000000">
+<link rel="shortcut icon" href="/images/favicon.ico?v=20201130">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="http://localhost:4000/images/mstile-150x150.png?v=20201130">
+<meta name="msapplication-config" content="http://localhost:4000/images/browserconfig.xml?v=20201130">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">Yubin Wang</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/research/">Research</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/posts/">Posts</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/talks/">Talks</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/cv/">CV</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="http://localhost:4000/images/profile.png" class="author__avatar" alt="Yubin Wang">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Yubin Wang</h3>
+    <p class="author__bio">Visiting Student @ KAUST</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+        <li><i class="fa fa-fw fa-map-marker-alt" aria-hidden="true"></i> Mainland, China</li>
+      
+      
+      
+      
+        <li><a href="mailto:yubin.wang@kaust.edu.sa"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Email</a></li>
+      
+      
+       
+      
+      
+      
+      
+        <li><a href="https://www.linkedin.com/in/yubinwang11"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+      
+      
+      
+      
+      
+      
+        <li><a href="https://github.com/yubinwang11"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Brief Report of Learning-Based Observer">
+    <meta itemprop="description" content="This report serves as my group meeting materials at EMANG in August,27. This article is about using the end-to-end approach of Deep Learning to compute the transformation which is incredibly essential for KKL observer. For simple, this article dives into this field through the aspect of autonomous systems and then the work is extended to non-autonomous systems with an excitation.">
+    <meta itemprop="datePublished" content="September 12, 2021">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Brief Report of Learning-Based Observer
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  11 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2021-09-12T00:00:00-05:00">September 12, 2021</time></p>
+        
+        
+             
+        
+    
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-align-justify"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#problem-statement">Problem Statement</a><ul><li><a href="#assumption">Assumption</a><ul><li><a href="#assumption-1">Assumption 1</a></li><li><a href="#assumption-2">Assumption 2</a></li></ul></li></ul></li><li><a href="#preliminaries-of-relevant-mapping-and-observer">Preliminaries of Relevant Mapping and Observer</a><ul><li><a href="#theorem">Theorem</a></li><li><a href="#kkl-observer">KKL Observer</a></li><li><a href="#traditional-ansatz">Traditional Ansatz</a></li><li><a href="#objective">Objective</a></li><li><a href="#why-choose-the-learning-based-techniques">Why choose the learning-based techniques</a></li></ul></li><li><a href="#deep-learning-based-observer-design">Deep Learning-Based Observer Design</a><ul><li><a href="#model-structure">Model Structure</a><ul><li><a href="#mapping-process">Mapping Process</a></li><li><a href="#recovery-process">Recovery Process</a></li></ul></li><li><a href="#training">Training</a><ul><li><a href="#extended-mapping-capability">Extended Mapping Capability</a></li><li><a href="#algorithm">Algorithm</a></li></ul></li><li><a href="#non-autonomous-systems">Non-Autonomous Systems</a><ul><li><a href="#note">Note</a></li><li><a href="#proof">Proof</a></li><li><a href="#miscs">Miscs</a></li></ul></li></ul></li><li><a href="#simulation-reproduction">Simulation Reproduction</a><ul><li><a href="#check-contraction-property">Check Contraction Property</a></li><li><a href="#data">Data</a></li><li><a href="#noise-on-y">Noise on y</a></li><li><a href="#results">Results</a></li></ul></li><li><a href="#discussion">Discussion</a><ul><li><a href="#the-choice-of-a">The choice of $A$</a><ul><li><a href="#results-1">Results</a></li><li><a href="#model-uncertainty">Model Uncertainty</a></li></ul></li><li><a href="#future-work">Future Work</a><ul><li><a href="#hyper-parameter">hyper-parameter</a></li><li><a href="#ekf-qr-matrix">EKF QR Matrix</a></li><li><a href="#trade-off-of-a">Trade-off of A</a></li><li><a href="#robustness-of-model-uncertainty">Robustness of model uncertainty</a></li></ul></li></ul></li><li><a href="#appendix">Appendix</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>This report serves as my group meeting materials at EMANG in August,27. This article is about using the end-to-end approach of Deep Learning to compute the transformation which is incredibly essential for KKL observer. For simple, this article dives into this field through the aspect of autonomous systems and then the work is extended to non-autonomous systems with an excitation.</p>
+
+<!--more-->
+
+<h1 id="problem-statement">Problem Statement</h1>
+
+<p>nonlinear discrete-time systems of general form:</p>
+
+\[\left\{\begin{array}{l}
+x_{k+1}=F\left(x_{k}, u_{k}\right) \\
+y_{k}=h\left(x_{k}\right)
+\end{array}\right.
+\tag{1}\]
+
+<h2 id="assumption">Assumption</h2>
+
+<h3 id="assumption-1">Assumption 1</h3>
+
+<p>$F$ is invertible and $F^{-1}$ and $h$ are of class $C^1$ and globally Lipschitz. For all non-negative integers $i$ we denote $◦$  the composition operator and</p>
+
+\[F^{i}=\underbrace{F \circ F \circ \cdots \circ F}_{i \text { times }}, \quad F^{-i}=\left(F^{-1}\right)^{i} \tag{2}\]
+
+<h3 id="assumption-2">Assumption 2</h3>
+
+<p>For all $(x_1, x_2) ∈ χ^2$ of nonlinear systems with input $u$, if $x_1 ≠x_2$, then there exists a positive integer $i$ such that $h(F^{−i} (x_1)) ≠ h(F^{−i} (x_2))$. This means that for any input $u$ of interest, there exists an open bounded set $\mathcal{O}$ containing χ such that nonlinear system is backward.</p>
+
+<h1 id="preliminaries-of-relevant-mapping-and-observer">Preliminaries of Relevant Mapping and Observer</h1>
+
+<p>For autonomous systems:</p>
+
+\[\left\{\begin{array}{l}
+x_{k+1}=F\left(x_{k}, 0\right) \\
+y_{k}=h\left(x_{k}\right)
+\end{array}\right. \tag{3}\]
+
+<p>with the Luenberger-like methodology holding the two traditional assumption.</p>
+
+<p>For almost any controllable pair $(A, B)$ of dimension $d_z:= d_y (d_x + 1)$ with $A$ Hurwitz there exists a map $T: \mathcal{X} \rightarrow \mathbb{R}^{d_{z}}$ that satisfies:</p>
+
+<p>\(T(F(x))=A T(x)+B h(x) \quad \forall x \in \mathcal{X}
+\tag{4}\)
+a pseudo-inverse $T ^{−1}$ such that the following system is an observer for autonomous system</p>
+
+\[\begin{aligned}
+z_{k+1} &amp;=A z_{k}+B y_{k} \\
+\hat{x}_{k} &amp;=T^{-1}\left(z_{k}\right)
+\end{aligned}
+\tag{5}\]
+
+<p>The unique solution of the map is given by</p>
+
+\[T(x)=\sum_{i=0}^{+\infty} A^{i} B h\left(F^{-(i+1)}(x)\right)
+\tag{6}\]
+
+<h2 id="theorem">Theorem</h2>
+
+<p>Assume that assumptions hold for autonomous system and let $d_z = d_y (d_x + 1)$. Then, for any matrix $A = Diag (λ_1, . . . , λ_{d_z }) ∈ \mathbb{R}^ {d_z×d_z} $ with eigenvalues $ (λ1, . . . , λ^{d_z} )$ and $ ρ(A) &lt; 1 $ and $B$ the vector $(1, \ldots, 1)^{\top}$in $\mathbb{R}^{d_x}$ .</p>
+
+<p>There exists an injective mapping $T : X → \mathbb{R} ^{dz}$ and a left inverse  $T^{−1}$ such that the trajectories remaining in $\mathcal{X}$ and the trajectories of observer dynamics satisfy</p>
+
+\[\begin{array}{l}
+\lim _{k \rightarrow+\infty}\left|T\left(X_{k}\left(x_{0}\right)\right)-Z_{k}\left(x_{0}, z_{0}\right)\right|=0 \\
+\lim _{k \rightarrow+\infty}\left|X_{k}\left(x_{0}\right)-T^{-1}\left(Z_{k}\left(x_{0}, z_{0}\right)\right)\right|=0
+\end{array}   \tag{7}\]
+
+<h2 id="kkl-observer">KKL Observer</h2>
+
+<p>design a KKL observer to online estimate $x_k$ from the knowledge of a sequence of the past and current values of the output $y_k$ and input $u_k$.</p>
+
+<h2 id="traditional-ansatz">Traditional Ansatz</h2>
+
+<p>An injective and continuous map $T$ which transforms the target system into a Hurwitz form exists.  Then, thanks to the contraction properties, the implementation of this new dynamic with any initial condition then provides an asymptotically convergent estimate of $T(X(x_0, u))$. Since $T$ is injective, an estimate of the solution $X(x_0, u)$can be obtained.</p>
+
+<h2 id="objective">Objective</h2>
+
+<p>However, even if sufficient conditions for the existence of this map have been given for a general form of nonlinear continuous systems, and consequently of the observer, a computable solution is unfortunately often difficult or impossible to obtain.</p>
+
+<p>Unfortunately, in most situations the function $T$ given by the unique solution is difficult to compute and an explicit expression for its pseudo inverse is rarely available. Therefore,  the object is  to develop an algorithm to numerically identify these mappings.</p>
+
+<h2 id="why-choose-the-learning-based-techniques">Why choose the learning-based techniques</h2>
+
+<p>Deep neural network architectures have shown to be able to learn non-linear mappings and to generalize to unseen data under certain conditions for a diverse range of problems. Different variants of the universal approximation theorem guarantee that a multi layer perceptron can express any arbitrary function, including our desired mappings, under mild conditions either for infinitely wide or infinitely deep (i.e layered)  model architectures.</p>
+
+<h1 id="deep-learning-based-observer-design">Deep Learning-Based Observer Design</h1>
+
+<p>This section proposes a constructive method to learn the mappings $T$ and $T^{−1}$ from data using unsupervised  learning.</p>
+
+<h2 id="model-structure">Model Structure</h2>
+
+<p>The network architecture of proposed model is shown.</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Model Structure.png" alt="" /></p>
+
+<h3 id="mapping-process">Mapping Process</h3>
+
+<p>Identify a latent space $z = T(x)$, which respects the observer dynamics given by the mapping.
+enforced dynamic using the following loss:</p>
+
+\[\mathcal{L}_{d y n}=\left\|T\left(x_{k+1}\right)-\left(A T\left(x_{k}\right)+B h\left(x_{k}\right)\right)\right\|
+\tag{8}\]
+
+<h3 id="recovery-process">Recovery Process</h3>
+
+<p>Seek to learn the pseudo-inverse $T ^{−1}$ so that an estimation $\hat{x}$ of the state is be recovered, which is achieved using an reconstruction loss of the auto-encoder, where $T$ is the encoder and $T ^{−1}$ is the decoder:</p>
+
+\[\mathcal{L}_{\text {recon }}=\left\|x_{k}-T^{-1}\left(T\left(x_{k}\right)\right)\right\| 
+\tag{9}\]
+
+<h2 id="training">Training</h2>
+
+<p>Train the model by minimizing two loss functions on a large dataset $D=\left{x_{k}, x_{k+1}\right}$, which is generated automatically from the considered systems. To allow a proper exploration of the state space, samples $x_k$ are obtained from a uniform random distribution on $\mathcal{X}$ while samples $x_{k+1}$ are obtained by applying the model dynamic.</p>
+
+<p>A difficulty arising with the chosen learning scheme is that the values of the latent representation $z = T(x)$ in losses are not part of the dataset $D$. It is therefore not possible to scale them, which is an important step in machine learning ensuring that neural networks operate in a favorable regime of their point-wise non-linearities.</p>
+
+<h3 id="extended-mapping-capability">Extended Mapping Capability</h3>
+
+<p>To cope with the below proble, $z$ can be scaled during the learning phase by adapting $B$. Taking  $\tilde{B}=\operatorname{diag}\left(\left[b_{1}, b_{2}, \ldots\right]\right) B$ and the scaled $T$ can be described as</p>
+
+\[\begin{aligned}
+\tilde{T}(x) &amp;=\sum_{i=0}^{+\infty} A^{i} \operatorname{diag}\left(\left[b_{1}, b_{2}, \ldots\right]\right) B h\left(f^{-(i+1)}(x)\right) \\
+&amp;=\operatorname{diag}\left(\left[b_{1}, b_{2}, \ldots\right]\right) T(x)
+\end{aligned}
+\tag{10}\]
+
+<h3 id="algorithm">Algorithm</h3>
+
+<p>Pseudo code of this kind of algorithm is shown as following.</p>
+
+<p>Notice that $B$ is iteratively adapted to standardize $z$ with respect to its standard deviation.
+<img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Algorithm.png" alt="" /></p>
+
+<h2 id="non-autonomous-systems">Non-Autonomous Systems</h2>
+
+<p>To generalize this estimation method, this section consider generalizing this implementation to non-autonomous systems with strict conditions of control input.</p>
+
+<p>Assume target system is standard nonlinear system with input,  and $u^0$ a constant input. In this case, two assumptions hold. From Theorem mentioned there exists a map $T$ solution to</p>
+
+\[T\left(F\left(x_{k}, u^{0}\right)\right)=A T\left(x_{k}\right)+B y_{k}
+\tag{11}\]
+
+<p>when adding mapping $T\left(F\left(x_{k}, u_{k}\right)\right)$ to each side, the equation becomes</p>
+
+<p>\(T\left(F\left(x_{k}, u_{k}\right)\right)=A T\left(x_{k}\right)+B y_{k}+T\left(F\left(x_{k}, u_{k}\right)\right)-T\left(F\left(x_{k}, u^{0}\right)\right)
+\tag{12}\)
+Hence, the latent state \(z_{k}=T\left(x_{k}\right)\) evolves according to observer dynamics</p>
+
+<p>\(z_{k+1}=A z_{k}+B y_{k}+\Psi\left(z_{k}, u_{k}\right)
+\tag{13}\)
+where</p>
+
+\[\Psi\left(z_{k}, u_{k}\right)=T\left(F\left(T^{-1}\left(z_{k}\right), u_{k}\right)\right)-T\left(F\left(T^{-1}\left(z_{k}\right), u^{0}\right)\right)
+\tag{14}\]
+
+<p>Note that, in the autonomous case, the term $Ψ(z_k, u_k)$ does not appear, the dynamics of z were contracting and it was enough to asymptotically simulate z with any initial condition.</p>
+
+<h3 id="note">Note</h3>
+
+<p>Unfortunately this is no longer true for non-autonomous systems, and this condition would be hard to cope with.</p>
+
+<p>But the following method gives us a way.</p>
+
+<p>Let $u_0$ be a constant input such that assumptions hold. Assume that $A$ can be designed such that $T, T _{−1}$ given by Theorem satisfy</p>
+
+\[\left|\Psi\left(z^{1}, u\right)-\Psi\left(z^{2}, u\right)\right| \leq C_{u}\left|z^{1}-z^{2}\right|
+\tag{15}\]
+
+<p>for all $u \in \mathcal{U}$ and for all $z_1 , z_2$. Then for $u$ such that $ρ(A + CuI) &lt; 1$ , we get that any solution verifies</p>
+
+\[\lim _{k \rightarrow+\infty}\left|x_{k}-T^{-1}\left(z_{k}\right)\right|=0
+\tag{16}\]
+
+<h3 id="proof">Proof</h3>
+
+<p>To take a step further, let denote by $e_k$ the estimation error $e_{k+1} = z_{k+1} − T(x_{k+1})$. $T$ being injective it is sufficient to prove that $e_{k+1} = z_{k+1} − T(x_{k+1})$ converges geometrically towards zero.</p>
+
+<p>\(\begin{aligned}
+e_{k+1} &amp;=z_{k+1}-T\left(F\left(x_{k}, u_{k}\right)\right.\\
+&amp;=A\left(z_{k}-T\left(x_{k}\right)\right)+\Psi\left(z_{k}, u_{k}\right)-\Psi\left(T\left(x_{k}\right), u_{k}\right)
+\end{aligned}
+\tag{17}\)
+Assuming that</p>
+
+<p>$Ψ(z_k, u_k)$ is Lipschitz</p>
+
+<p>$u_k − u_0$ small enough</p>
+
+<p>$ρ(A)$ small enough,</p>
+
+<p>dynamics of non-autonomous systems are still  contracting and $z_{k+1} − T(x_{k+1})$ converges towards zero.</p>
+
+<p>Hence the mappings $T$ and $T^{−1}$ , learned on the autonomous system following the procedure of autonomous systems, can be used to design the observer of non-autonomous systems.</p>
+
+<h3 id="miscs">Miscs</h3>
+
+<p>Another paper about numerical design of luenberger observers proposes to select an input $u(t)$ that makes the system extensively explore the state space. Then a time varying mapping $T_u$ (and so a time varying pseudo inverse $T ^{−1}_ u $) is identified. Unfortunately, this procedure does not guarantee a proper exploration of the state space during training, especially for systems which quickly converge to a limit cycle.</p>
+
+<p>And the author did rely on the stability of the observer, and therefore on the fact that $z$ forgets its initial conditions, to eliminate the early stages of the simulation from the dataset. Moreover,  the mapping $z = T(x)$ is learned with a fully supervised objective.</p>
+
+<p>Compared with the mentioned paper, this paper avoids these limitations by design through unsupervised learning, and is therefore simpler to apply.</p>
+
+<p>First, there are not constraints on inputs, which can be selected to properly explore that state space. Furthermore, the task of learning $T$ may be easier as it is not time dependent. More importantly, in the case of a time varying mapping, an identification should be available for the (possibly infinite) duration of the observer experiment.</p>
+
+<p>But remember, even if the performances of the proposed approach are promising when we adopt constant control input, the design assumptions in non-autonomous case may be relaxed to provide more general results. And the performance when cope with time-varying control input seems unclear since the computation cost would be unaffordable.</p>
+
+<h1 id="simulation-reproduction">Simulation Reproduction</h1>
+
+<p>Consider  non-conservative Van der Pol oscillator with nonlinear damping</p>
+
+<p>\(\left\{\begin{array}{l}
+x_{1, k+1}=x_{1, k}+\delta_{t} x_{2, k} \\
+x_{2, k+1}=x_{2, k}+\delta_{t}\left(\left(1-x_{1, k}^{2}\right) x_{2, k}-x_{1, k}+u_{k}\right) \\
+y_{k}=x_{1, k}
+\end{array}\right.
+\tag{18}\)
+the observer dynamics</p>
+
+\[z_{k+1}=A z_{k}+B y_{k}+\Psi\left(z_{k}, u_{k}\right) ,  z_{k}=T\left(x_{k}\right)
+\tag{19}\]
+
+<p>Select $A=diag(0.5,0,-0.5)$,</p>
+
+<p>makes use of $T$ and $T ^{−1}$ learned on the unforced system when $u=0$ for convenience</p>
+
+<p>During evaluation, consider use an input signal $u_k = 0.44 cos(0.5k × δ_t)$</p>
+
+<h2 id="check-contraction-property">Check Contraction Property</h2>
+
+<ol>
+  <li>$u_k = 0.44 cos(0.5k × δ_t)≤0.44$ and can be deemed as measurement noise. (small enough)  corrected</li>
+  <li>spectral radius $\rho(A)= 0.5&lt;1$ (small enough) corrected</li>
+</ol>
+
+<h2 id="data">Data</h2>
+
+<p>Training data and validation data are uniformly sampled in $\mathcal{X}=[-2.3,2.3] \times [-3.3,3.3]$.</p>
+
+<p>To achieve more accurate estimation, training data and validation data can be generated from different range. For example, training data is from $\mathcal{X}=[-2.5,2.5] \times[-3.5,3.5]$, while validation experiments are conducted with $x_0∈\mathcal{X_0}=[-2,2] \times[-3,3]$.</p>
+
+<h2 id="noise-on-y">Noise on y</h2>
+
+<p>Additional noise is considered on measurements (a Gaussian signal with standard deviation of 0.2 is added to $y_k$).</p>
+
+<h2 id="results">Results</h2>
+
+<p>$T$  30 epochs, $T^{-1}$30 epochs</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T30 T-1 30\T30 T-1 30.jpg" alt="" /></p>
+
+<p>$T$  80 epochs, $T^{-1}$80 epochs</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T 80 T-1 80\T 80 T-1 80.jpg" alt="" /></p>
+
+<p>$T$  160 epochs, $T^{-1}$160 epochs</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T160 T-1 160\T 160 T-1 160.jpg" alt="" /></p>
+
+<h1 id="discussion">Discussion</h1>
+
+<h2 id="the-choice-of-a">The choice of $A$</h2>
+
+<p>Note:  the choice of $A$ spectrum can actually effects the capacity of noise rejection, to be more specific, the spectra radius of $A$ is larger, the ability to reject the measurement noise on y is more robust.</p>
+
+<p>However, according to the analysis of non-autonomous systems’ contracting property, whether the learning-based observer performance with an excitation can converge or not is dependent on the spectra radius of $A$ which means the smaller $A$ is better.</p>
+
+<p>So It would be a trade-off between the convergence speed and the capability of noise rejection.</p>
+
+<h3 id="results-1">Results</h3>
+
+<p>$A=diag(0.9,0,-0.9)$,  $T$  80 epochs, $T^{-1}$80 epochs</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T T-1 80 noise 0.2 A 0.9\errors.jpg" alt="" /></p>
+
+<p>$A=diag(0.5,0,-0.5)$,  $T$  80 epochs, $T^{-1}$80 epochs</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T 80 T-1 80\T 80 T-1 80.jpg" alt="" /></p>
+
+<p>$A=diag(0.2,0,-0.2)$,  $T$  80 epochs, $T^{-1}$80 epochs</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T T-1 80 R(A)=0.2 noise=0.2\errors (1).jpg" alt="" /></p>
+
+<h3 id="model-uncertainty">Model Uncertainty</h3>
+
+<p>To generalize the robustness of this learning-based KKL observer,  we have already considered the measurement noise on output y. And performance verifies the capability of noise rejection.</p>
+
+<p>To take a step further, let’s take a look at the nonlinear discreet time system with model uncertainty, like below.</p>
+
+<p>\(\left\{\begin{array}{l}
+x_{1, k+1}=x_{1, k}+\delta_{t} x_{2, k}+\sigma_1 \\
+x_{2, k+1}=x_{2, k}+\delta_{t}\left(\left(1-x_{1, k}^{2}\right) x_{2, k}-x_{1, k}+u_{k}\right)+\sigma_2 \\
+y_{k}=x_{1, k}
+\end{array}\right.
+\tag{20}\)
+$\sigma_1,\sigma_2$ both subject to $(0,0.1)$</p>
+
+<p>In this case, the modification aims to learn an appropriate mapping via inaccurate dataset. Here are the results.</p>
+
+<p>### Results</p>
+
+<p>$T$  130 epochs, $T^{-1}$130 epochs, both measurement noise on y and model uncertainty on x exist</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T 130 T-1 130 uncertainty_std=0.1 nosie_std=0.2\130 0.2 0.1.jpg" alt="" /></p>
+
+<p>Moreover, to test the disturbance of model uncertainty to performance, the measurement noise on y was removed.</p>
+
+<p>$T$  130 epochs, $T^{-1}$130 epochs, solely model uncertainty on $x$ exists</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\Results\T T-1 130 unc_std=0.1 noise=0\T T-1 130 unc_std=0.1 noise=0.jpg" alt="" /></p>
+
+<h2 id="future-work">Future Work</h2>
+
+<h3 id="hyper-parameter">hyper-parameter</h3>
+
+<h3 id="ekf-qr-matrix">EKF QR Matrix</h3>
+
+<h3 id="trade-off-of-a">Trade-off of A</h3>
+
+<h3 id="robustness-of-model-uncertainty">Robustness of model uncertainty</h3>
+
+<h1 id="appendix">Appendix</h1>
+
+<p>the relevant proof about non-autonomous systems’ contracting property</p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\proof1.jpg" alt="" /></p>
+
+<p><img src="C:\Users\fishc\Desktop\EMAN Group\Internship\Learning-Based Observer\Brief Report of _Deep Learning-based Luenberger observers design for discrete-time nonlinear systems__md_files\proof2.jpg" alt="" /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#control-theory" class="page__taxonomy-item" rel="tag">control theory</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#machine-learning" class="page__taxonomy-item" rel="tag">machine learning</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/posts/2021/09/learn-obs" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2021/09/learn-obs" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2021/09/learn-obs" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2021/01/gps-gis-osm" class="pagination--pager" title="position1
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/posts/2021/09/roboform" class="pagination--pager" title="Multi-Robot Point-To-Point Transitions with Collision Avoidance using ROS2
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+        
+        
+        
+        
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+        
+        
+        
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2020/10/jeykll-footnotes" rel="permalink">TOEFL Intergrated Writing Template
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  less than 1 minute read
+	
+</p>
+    
+
+    
+      <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2021-09-13T00:00:00-05:00">September 13, 2021</time></p>
+    
+    
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>This article is my personal template sorted out for TOEFL intergrated writing according to the standard guidance of Teacher Li. Please take it away if helpful :)</p>
+
+</p>
+    
+    
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2021/09/roboform" rel="permalink">Multi-Robot Point-To-Point Transitions with Collision Avoidance using ROS2
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+    
+      <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2021-09-12T00:00:00-05:00">September 12, 2021</time></p>
+    
+    
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>This technical report aims to server as course project technical report from Yubin Wang and also be tutorials of Turtlebot3 with ROS2 and Python3 for all members at ANCL which is under the supervision of Prof. Fei Chen at Northeastern University.</p>
+
+</p>
+    
+    
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2021/01/gps-gis-osm" rel="permalink">position1
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  less than 1 minute read
+	
+</p>
+    
+
+    
+      <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2021-01-04T00:00:00-06:00">January 04, 2021</time></p>
+    
+    
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>under construction</p>
+
+</p>
+    
+    
+  </article>
+</div>
+
+        
+          
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="/sitemap/">Sitemap</a>
+<!-- end custom footer snippets -->
+
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+      <li><a href="http://github.com/yubinwang11"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Yubin Wang. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+  <script data-goatcounter="https://yubinwang.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

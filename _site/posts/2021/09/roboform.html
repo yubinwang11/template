@@ -1,0 +1,1199 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Multi-Robot Point-To-Point Transitions with Collision Avoidance using ROS2 - Yubin Wang</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Yubin Wang">
+<meta property="og:title" content="Multi-Robot Point-To-Point Transitions with Collision Avoidance using ROS2">
+
+
+  <link rel="canonical" href="http://localhost:4000/posts/2021/09/roboform">
+  <meta property="og:url" content="http://localhost:4000/posts/2021/09/roboform">
+
+
+
+  <meta property="og:description" content="This technical report aims to server as course project technical report from Yubin Wang and also be tutorials of Turtlebot3 with ROS2 and Python3 for all members at ANCL which is under the supervision of Prof. Fei Chen at Northeastern University.">
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2021-09-12T00:00:00-05:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Yubin Wang",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Yubin Wang Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    
+
+<!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72.png?v=20201130">
+<link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114.png?v=20201130">
+<link rel="apple-touch-icon" sizes="120x120" href="http://localhost:4000/images/apple-touch-icon-120x120.png?v=20201130">
+<link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144.png?v=20201130">
+<link rel="apple-touch-icon" sizes="152x152" href="http://localhost:4000/images/apple-touch-icon-152x152.png?v=20201130">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png?v=20201130">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png?v=20201130" sizes="32x32">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/android-chrome-192x192.png?v=20201130" sizes="192x192">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-16x16.png?v=20201130" sizes="16x16">
+<link rel="manifest" href="http://localhost:4000/images/manifest.json?v=20201130">
+<link rel="mask-icon" href="http://localhost:4000/images/safari-pinned-tab.svg?v=20201130" color="#000000">
+<link rel="shortcut icon" href="/images/favicon.ico?v=20201130">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="http://localhost:4000/images/mstile-150x150.png?v=20201130">
+<meta name="msapplication-config" content="http://localhost:4000/images/browserconfig.xml?v=20201130">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">Yubin Wang</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/research/">Research</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/posts/">Posts</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/talks/">Talks</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/cv/">CV</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="http://localhost:4000/images/profile.png" class="author__avatar" alt="Yubin Wang">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Yubin Wang</h3>
+    <p class="author__bio">Visiting Student @ KAUST</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact</button>
+    <ul class="author__urls social-icons">
+      
+        <li><i class="fa fa-fw fa-map-marker-alt" aria-hidden="true"></i> Mainland, China</li>
+      
+      
+      
+      
+        <li><a href="mailto:yubin.wang@kaust.edu.sa"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Email</a></li>
+      
+      
+       
+      
+      
+      
+      
+        <li><a href="https://www.linkedin.com/in/yubinwang11"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+      
+      
+      
+      
+      
+      
+        <li><a href="https://github.com/yubinwang11"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Multi-Robot Point-To-Point Transitions with Collision Avoidance using ROS2">
+    <meta itemprop="description" content="This technical report aims to server as course project technical report from Yubin Wang and also be tutorials of Turtlebot3 with ROS2 and Python3 for all members at ANCL which is under the supervision of Prof. Fei Chen at Northeastern University.">
+    <meta itemprop="datePublished" content="September 12, 2021">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Multi-Robot Point-To-Point Transitions with Collision Avoidance using ROS2
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  10 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2021-09-12T00:00:00-05:00">September 12, 2021</time></p>
+        
+        
+             
+        
+    
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-align-justify"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#hardware">Hardware</a></li><li><a href="#software">Software</a></li><li><a href="#bringup">Bringup</a><ul><li><a href="#modify-host-file">Modify Host File</a></li><li><a href="#distribute-name-to-each-robo">Distribute Name to Each Robo</a><ul><li><a href="#step-1-create-a-new-ros2-package">Step 1: Create a New ros2 Package:</a></li><li><a href="#step2-copy-and-modify-contents-from-the-tb3-bringup-package-into-your-package">Step2: Copy and Modify Contents from the TB3 Bringup Package into Your Package</a></li><li><a href="#step-3-modify-the-parameter-yaml-file">Step 3: Modify the Parameter YAML File</a></li><li><a href="#step-4-modify-the-cmakelists-file">Step 4: Modify the CMakeLists File</a></li><li><a href="#step-5-compile-and-run">Step 5: Compile and Run</a></li></ul></li></ul></li><li><a href="#optitrack">OptiTrack</a><ul><li><a href="#comms-between-ros-and-optitrack">Comms between ROS and OptiTrack</a><ul><li><a href="#software-installation">Software Installation</a></li><li><a href="#software-activation">Software Activation</a></li><li><a href="#calibration">Calibration</a></li><li><a href="#creating-rigidbody">Creating Rigidbody</a></li><li><a href="#tracking-rigidbody">Tracking Rigidbody</a></li><li><a href="#data-streaming">Data Streaming</a></li><li><a href="#vrpn-configuration">VRPN Configuration</a></li><li><a href="#launch-vrpn">Launch VRPN</a></li><li><a href="#note">Note</a></li></ul></li><li><a href="#bridge-between-ros1-and-ros2">Bridge between ROS1 and ROS2</a></li></ul></li><li><a href="#run-our-demo">Run Our Demo</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>This technical report aims to server as course project technical report from Yubin Wang and also be tutorials of Turtlebot3 with ROS2 and Python3 for all members at ANCL which is under the supervision of Prof. Fei Chen at Northeastern University.</p>
+
+<!--more-->
+
+<p>Please note that this technical report <strong>has not been published as open source file</strong>.
+And we are considering to free this project access to public if in convenience.</p>
+
+<p>Author: Yubin Wang, Du Yong</p>
+
+<h1 id="hardware">Hardware</h1>
+
+<p>A remote PC (Laptop)          <br />
+Several turtlebot3 mobile robots            <br />
+OptiTrack or other kinds of motion capture systems like VICON           <br />
+A server with motive(API of OptiTrack)</p>
+
+<h1 id="software">Software</h1>
+
+<p>Several turtlebot3 burgers with Raspberry Pi inserted by Ubuntu18.04 and relevant ros2 packages are necessary. And you may jump to ROBOTIS official tutorials to seek more constructive references since I would overlook too many details which you can get the access via many ways.
+ [ROBOTIS e-Manual]https://emanual.robotis.com)</p>
+
+<p><strong>Note</strong> : we select burger as our testbed in this project and you can choose any other kinds of ROS2 standard platform as you need.
+ Repeat above procedures if you need set up multiple turtlebot3.</p>
+
+<h1 id="bringup">Bringup</h1>
+
+<p>Assuming all our robots and remote PC are connected to the same WIFI at this setup.
+[Remote PC] test ssh can work or not:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh ubuntu@&lt;NETWORK IP of Raspberry PI&gt;
+</code></pre></div></div>
+
+<h2 id="modify-host-file">Modify Host File</h2>
+
+<p>If this step can’t work, you may modify the host file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo vim /etc/hosts
+</code></pre></div></div>
+
+<p>and add IP of robots haven’t been registered:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;robot's IP ie. 192.168.1.181&gt; ubuntu
+</code></pre></div></div>
+
+<p>Restart ssh and check if it works.</p>
+
+<p>And bringing up singe robot is not a case anymore:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros2 launch turtlebot3_bringup robot.launch.py
+</code></pre></div></div>
+
+<h2 id="distribute-name-to-each-robo">Distribute Name to Each Robo</h2>
+
+<p>The trouble which makes you down is <strong>Giving a TurtleBot3 a Namespace for Multi-Robot Experiments</strong>.
+A blog from a PhD. candidate at ASU helps. <a href="https://zmk5.github.io/general/guide/2019/09/20/ros2-tb3-namespace.html">https://zmk5.github.io/general/guide/2019/09/20/ros2-tb3-namespace.html</a>.</p>
+
+<p>So let’s get started. You should connect each robot via ssh and follow below instructions:</p>
+
+<h3 id="step-1-create-a-new-ros2-package">Step 1: Create a New ros2 Package:</h3>
+
+<p>Start by changing into your <code class="language-plaintext highlighter-rouge">src</code> directory of your workspace that also contains the <code class="language-plaintext highlighter-rouge">turtlebot3</code> and <code class="language-plaintext highlighter-rouge">utils</code> packages provided by ROBOTIS.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~$ cd ~/turtlebot3_ws/src
+~$ ros2 pkg create my_tb3_launcher
+
+</code></pre></div></div>
+
+<p>Now, create two empty directories in the new package:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~$ cd ~/turtlebot3_ws/src/my_tb3_launcher
+~$ mkdir launch
+~$ mkdir param
+
+</code></pre></div></div>
+
+<p>Change into the <code class="language-plaintext highlighter-rouge">launch</code> directory and create a new bringup launch file.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~$ cd launch
+~$ touch my_tb3_bringup.launch.py
+
+</code></pre></div></div>
+
+<h3 id="step2-copy-and-modify-contents-from-the-tb3-bringup-package-into-your-package">Step2: Copy and Modify Contents from the TB3 Bringup Package into Your Package</h3>
+
+<p>In the <code class="language-plaintext highlighter-rouge">turtlebot3/turtlebot3_bringup</code> ros2 package, copy the contents of <code class="language-plaintext highlighter-rouge">robot.launch.py</code> into the <code class="language-plaintext highlighter-rouge">my_tb3_bringup.launch.py</code> with the following changes marked as <code class="language-plaintext highlighter-rouge"># comments</code> in the following code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os2
+
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration
+from launch.substitutions import ThisLaunchFileDir
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+    TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
+
+    usb_port = LaunchConfiguration('usb_port', default='/dev/ttyACM0')
+
+    tb3_param_dir = LaunchConfiguration(
+        'tb3_param_dir',
+        default=os.path.join(
+            get_package_share_directory('my_tb3_launcher'),  # &lt;--- CHANGE THIS!
+            'param',
+            TURTLEBOT3_MODEL + '.yaml'))
+
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+
+    return LaunchDescription([
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value=use_sim_time,
+            description='Use simulation (Gazebo) clock if true'),
+
+        DeclareLaunchArgument(
+            'usb_port',
+            default_value=usb_port,
+            description='Connected USB port with OpenCR'),
+
+        DeclareLaunchArgument(
+            'tb3_param_dir',
+            default_value=tb3_param_dir,
+            description='Full path to turtlebot3 parameter file to load'),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                [ThisLaunchFileDir(), '/turtlebot3_state_publisher.launch.py']),
+            launch_arguments={'use_sim_time': use_sim_time}.items(),
+        ),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/hlds_laser.launch.py']),  &lt;--- CHANGE THIS
+            launch_arguments={'port': '/dev/ttyUSB0', 'frame_id': 'base_scan'}.items(),
+        ),
+
+        Node(
+            package='turtlebot3_node',
+            node_executable='turtlebot3_ros',
+            node_namespace='tb3_0',  # &lt;------------------- ADD THIS!
+            parameters=[tb3_param_dir],
+            arguments=['-i', usb_port],
+            output='screen'),
+    ])
+
+
+</code></pre></div></div>
+
+<p>Next, copy the file <code class="language-plaintext highlighter-rouge">turtlebot3_state_publisher.launch.py</code> from the <code class="language-plaintext highlighter-rouge">turtlebot3_bringup/launch</code> directory into your package’s <code class="language-plaintext highlighter-rouge">launch</code> directory. Make sure it has the same name! Once complete, make the following changes as marked by the following comments:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os
+
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+    TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
+
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+    urdf_file_name = 'turtlebot3_' + TURTLEBOT3_MODEL + '.urdf'
+
+    print("urdf_file_name : {}".format(urdf_file_name))
+
+    urdf = os.path.join(
+        get_package_share_directory('turtlebot3_description'),
+        'urdf',
+        urdf_file_name)
+
+    return LaunchDescription([
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock if true'),
+
+        Node(
+            package='robot_state_publisher',
+            node_executable='robot_state_publisher',
+            node_name='robot_state_publisher',
+            node_namespace='tb3_0',  # &lt;------------------- ADD THIS!
+            output='screen',
+            parameters=[{'use_sim_time': use_sim_time}],
+            arguments=[urdf]),
+    ])
+
+
+</code></pre></div></div>
+
+<p>Finally, copy the file <code class="language-plaintext highlighter-rouge">hlds_laser.launch.py</code> from the <code class="language-plaintext highlighter-rouge">hls_lfcd_lds_driver</code> package located in the <code class="language-plaintext highlighter-rouge">launch</code> directory into your package’s <code class="language-plaintext highlighter-rouge">launch</code> directory. Again, make sure it has the same name!. Modify the launch file with the following changes marked by the comments below:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os
+
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.actions import LogInfo
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+    port = LaunchConfiguration('port', default='/dev/ttyUSB0')
+
+    frame_id = LaunchConfiguration('frame_id', default='laser')
+
+    return LaunchDescription([
+
+        DeclareLaunchArgument(
+            'port',
+            default_value=port,
+            description='Specifying usb port to connected lidar'),
+
+        DeclareLaunchArgument(
+            'frame_id',
+            default_value=frame_id,
+            description='Specifying frame_id of lidar. Default frame_id is \'laser\''),
+
+        Node(
+            package='hls_lfcd_lds_driver',
+            node_executable='hlds_laser_publisher',
+            node_name='hlds_laser_publisher',
+            node_namespace='tb3_0',  # &lt;------------------- ADD THIS!
+            parameters=[{'port': port, 'frame_id': frame_id}],
+            output='screen'),
+    ])
+
+</code></pre></div></div>
+
+<h3 id="step-3-modify-the-parameter-yaml-file">Step 3: Modify the Parameter YAML File</h3>
+
+<p>Now copy the <code class="language-plaintext highlighter-rouge">burger.yaml</code> file located in the <code class="language-plaintext highlighter-rouge">param</code> directory of the <code class="language-plaintext highlighter-rouge">turtlebot3_bringup</code> package, and make the following modification at the top!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tb3_0:
+  turtlebot3_node:
+    ros__parameters:
+
+      opencr:
+        id: 200
+        baud_rate: 1000000
+        protocol_version: 2.0
+
+      wheels:
+        separation: 0.160
+        radius: 0.033
+
+      motors:
+        profile_acceleration_constant: 214.577
+
+        # [rev/min2]
+        # ref) http://emanual.robotis.com/docs/en/dxl/x/xl430-w250/#profile-acceleration
+        profile_acceleration: 0.0
+
+      sensors:
+        bumper_1: false
+        bumper_2: false
+
+        illumination: false
+
+        ir: false
+
+        sonar: false
+
+tb3_0:
+  diff_drive_controller:
+    ros__parameters:
+
+      odometry:
+        publish_tf: true
+        use_imu: true
+        frame_id: "odom"
+        child_frame_id: "base_footprint"
+
+</code></pre></div></div>
+
+<p>As you can see, the top most parameter used to be the node name (<code class="language-plaintext highlighter-rouge">turtlebot3_node</code> and <code class="language-plaintext highlighter-rouge">diff_drive_controller</code>). For the node namespace that you added to work, you will need to add the node namespace (<code class="language-plaintext highlighter-rouge">tb3_0</code>) one level <em>above</em> the node name!</p>
+
+<p>In Step 2, we already changed the launch file to point to <em>this</em> yaml file instead of the one located in the <code class="language-plaintext highlighter-rouge">turtlebot3_bringup</code> package.</p>
+
+<h3 id="step-4-modify-the-cmakelists-file">Step 4: Modify the CMakeLists File</h3>
+
+<p>For this section, we will just be adding a small code snipet to our <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> that will install the <code class="language-plaintext highlighter-rouge">launch</code> and <code class="language-plaintext highlighter-rouge">param</code> contents of our <code class="language-plaintext highlighter-rouge">my_tb3_launcher</code> package.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+install(DIRECTORY
+  launch
+  param
+  DESTINATION share/${PROJECT_NAME}/
+)
+...
+
+</code></pre></div></div>
+
+<p>Add this snippet right before the <code class="language-plaintext highlighter-rouge">if(BUILD_TESTING)</code> section of the <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file.</p>
+
+<h3 id="step-5-compile-and-run">Step 5: Compile and Run</h3>
+
+<p>Finally, compile the code on your TurtleBot3:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~$ cd ~/turtlebot3_ws
+~$ colcon build --symlink-install --parallel-workers 1
+~$ . install/setup.bash
+
+</code></pre></div></div>
+
+<p>Now, run your launch file to make sure it works!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~$ export TURTLEBOT3_MODEL=burger
+~$ ros2 launch my_tb3_launcher my_tb3_bringup.launch.py
+
+</code></pre></div></div>
+
+<p>You should get the following topics when you run <code class="language-plaintext highlighter-rouge">ros2 topic list</code> in another bash session:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/tb3_0/battery_state
+/tb3_0/cmd_vel
+/tb3_0/imu
+/tb3_0/joint_states
+/tb3_0/magnetic_field
+/tb3_0/odom
+/tb3_0/parameter_events
+/tb3_0/robot_description
+/tb3_0/rosout
+/tb3_0/scan
+/tb3_0/sensor_state
+/tb3_0/tf
+/tb3_0/tf_static
+
+</code></pre></div></div>
+
+<p>You can repeat these procedures with other TurtleBot3 robots with different namespaces to have multiple robots working in your network and then bring up all them.</p>
+
+<p>By the way,  it’s accessible for robots with their own namespace to response indicators from remote PC. For example, in terminal on remote PC:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ros2 run turtlebot3_teleop teleop_keyboard --ros -arg --remap /cmd_vel:=/tb3_0/cmd_vel
+</code></pre></div></div>
+
+<p>Run this keyboard-based control file to test it.</p>
+
+<h1 id="optitrack">OptiTrack</h1>
+
+<p>In such multi-robot experiments, OptiTrack or other kinds of global motion capture systems can provided us with reliable state measurements. It’s common that OptiTrack communicates with our PC via VRPN, a kind of data streaming.</p>
+
+<h2 id="comms-between-ros-and-optitrack">Comms between ROS and OptiTrack</h2>
+
+<p>This section is translated from previous CSDN blog <a href="https://blog.csdn.net/weixin_41536025/article/details/89913961">“Optitrack与ROS详细教程以及Motive的使用”</a>.</p>
+
+<h3 id="software-installation">Software Installation</h3>
+
+<ol>
+  <li>Run Motive installaton package</li>
+  <li>Install USB drive</li>
+  <li>Install Motive to server (default installation path is OK).</li>
+</ol>
+
+<h3 id="software-activation">Software Activation</h3>
+
+<ol>
+  <li>Open Optitrack -&gt; License Tool</li>
+  <li>Fill in License Serial Number/ License Hash/ Hardware Key Serial Number as your bill information.</li>
+  <li>Click “Activation”.</li>
+</ol>
+
+<h3 id="calibration">Calibration</h3>
+
+<p>If there is any change on any camera, please recaibration to avoid potential localization inaccuracy.
+And calibration accuracy would decrease as time ,varying temperature and other experimental elements, so we recommend that recalibrate cameras every day.</p>
+
+<ol>
+  <li>Select “Perform Camera Callibration” in the starting interface.</li>
+  <li>Clear all masks via camera preview.</li>
+  <li>Click “Mask Visible” to clear all shinning and unremovable objects in court.</li>
+  <li>Start Wanding.</li>
+  <li>Calculae localization errors.</li>
+  <li>Apply calibration result.</li>
+  <li>Put the L-shape bar into court. Please make sure constructed coordinate system is correct by cheking the direction of bar.</li>
+  <li>Set Ground Plane.</li>
+</ol>
+
+<h3 id="creating-rigidbody">Creating Rigidbody</h3>
+
+<p>3 ways to create rigidbody:</p>
+<ol>
+  <li>Create from selected markers after selecting at least three markers.</li>
+  <li>Use hot key “Ctrl+T” to create it.</li>
+  <li>Select “New Rigid Body” in Asset window.</li>
+</ol>
+
+<h3 id="tracking-rigidbody">Tracking Rigidbody</h3>
+
+<p>For rigidbody, the pivot point represents its location and posture. Hence, make sure that the direction of rigidbody’s local coordinate system is as same as global coordinate system.</p>
+
+<p>Rigid Body -&gt; Real-Time Info to view current info of rigidbody.</p>
+
+<h3 id="data-streaming">Data Streaming</h3>
+
+<p>OPen streaming window.</p>
+
+<p>Make sure the following buttons are opened:</p>
+<ol>
+  <li>Broadcast Frame Data.</li>
+  <li>Broadcast VRPN Data</li>
+</ol>
+
+<h3 id="vrpn-configuration">VRPN Configuration</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ~/catkin_ws/src
+git clone https://github.com/clearpathrobotics/vrpn_client_ros.git
+sudo apt-get install ros-kinetic-vrpn # vrpn version should match with your ros version
+</code></pre></div></div>
+<p>Then,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ~/catkin_ws
+catkin_make
+</code></pre></div></div>
+<p>Test the communication,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping 192.168.1.2 # ip of server with motive
+</code></pre></div></div>
+
+<h3 id="launch-vrpn">Launch VRPN</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>roslaunch vrpn_client_ros sample.launch server:=192.168.1.2 # ip of server with motive
+</code></pre></div></div>
+<h3 id="note">Note</h3>
+<ol>
+  <li>Make sure ip is correct</li>
+  <li>Close server’s firewall</li>
+</ol>
+
+<h2 id="bridge-between-ros1-and-ros2">Bridge between ROS1 and ROS2</h2>
+
+<p>It is worth noting that the wide-spread VRPN client, <code class="language-plaintext highlighter-rouge">vrpn_client_ros</code>, is dependent on ROS1, but turtlebot3 packages are inserted in ROS2. In this case, we introduce a dynamic bridge for which ROS1 and ROS2 can exchange topics, services, messages with each other.</p>
+
+<p>vrpn_client_ros is a open source package which rely on ROS1 environment, but all our turtlebot package should be run in ROS2. So in this part, we are going to achieve simultaneous ROS1-ROS2 communication.  <br />
+For more details,  please refer to <a href="https://github.com/ros2/ros1_bridge">https://github.com/ros2/ros1_bridge</a>.</p>
+
+<p>First we start a ROS 1 roscore:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#Shell A (ROS 1 only):
+. /opt/ros/melodic/setup.bash
+#Or, on OSX, something like:
+#. ~/ros_catkin_ws/install_isolated/setup.bash
+roscore
+</code></pre></div></div>
+
+<p>Then we start the dynamic bridge which will watch the available ROS 1 and ROS 2 topics. Once a matching topic has been detected it starts to bridge the messages on this topic.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Shell B (ROS 1 + ROS 2):
+# Source ROS 1 first:
+. /opt/ros/melodic/setup.bash
+# Or, on OSX, something like:
+# . ~/ros_catkin_ws/install_isolated/setup.bash
+# Source ROS 2 next:
+. &lt;install-space-with-bridge&gt;/setup.bash
+# For example:
+# . /opt/ros/dashing/setup.bash
+export ROS_MASTER_URI=http://localhost:11311
+ros2 run ros1_bridge dynamic_bridge
+
+</code></pre></div></div>
+
+<p>The program will start outputting the currently available topics in ROS 1 and ROS 2 in a regular interval.</p>
+
+<p>Now we start the ROS 1 node.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Shell C:
+source ~/catkin_ws/devel/setup.bash
+# Or, on OSX, something like:
+# . ~/ros_catkin_ws/install_isolated/setup.bash
+roslaunch vrpn_client_ros sample.launch server:=&lt;IP of server with motive&gt;
+
+</code></pre></div></div>
+
+<p>Basically, you will be shown that vrpn_client_node would be listed after you run <code class="language-plaintext highlighter-rouge">rqt</code> once you have already launched the bringup file of each robot:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros2 launch my_tb3_launcher my_tb3_bringup.launch.py
+</code></pre></div></div>
+
+<h1 id="run-our-demo">Run Our Demo</h1>
+
+<p>Congratulations!   <br />
+At this step,  believe that you have activated all robotic environments and communication channel.</p>
+
+<p>Don’t wait to build workspace:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ~/turtlebot3_ws
+colcon build
+</code></pre></div></div>
+
+<p>and run turtlebot3_position_control file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros2 run turtlebot3_example turtlebot3_position_control
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#multi-robot-systems" class="page__taxonomy-item" rel="tag">multi-robot systems</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/posts/2021/09/roboform" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2021/09/roboform" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2021/09/roboform" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2021/09/learn-obs" class="pagination--pager" title="Brief Report of Learning-Based Observer
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/posts/2020/10/jeykll-footnotes" class="pagination--pager" title="TOEFL Intergrated Writing Template
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+        
+        
+        
+        
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+        
+        
+        
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2020/10/jeykll-footnotes" rel="permalink">TOEFL Intergrated Writing Template
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  less than 1 minute read
+	
+</p>
+    
+
+    
+      <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2021-09-13T00:00:00-05:00">September 13, 2021</time></p>
+    
+    
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>This article is my personal template sorted out for TOEFL intergrated writing according to the standard guidance of Teacher Li. Please take it away if helpful :)</p>
+
+</p>
+    
+    
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2021/09/learn-obs" rel="permalink">Brief Report of Learning-Based Observer
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  11 minute read
+	
+</p>
+    
+
+    
+      <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2021-09-12T00:00:00-05:00">September 12, 2021</time></p>
+    
+    
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>This report serves as my group meeting materials at EMANG in August,27. This article is about using the end-to-end approach of Deep Learning to compute the transformation which is incredibly essential for KKL observer. For simple, this article dives into this field through the aspect of autonomous systems and then the work is extended to non-autonomous systems with an excitation.</p>
+
+</p>
+    
+    
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2021/01/gps-gis-osm" rel="permalink">position1
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  less than 1 minute read
+	
+</p>
+    
+
+    
+      <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2021-01-04T00:00:00-06:00">January 04, 2021</time></p>
+    
+    
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>under construction</p>
+
+</p>
+    
+    
+  </article>
+</div>
+
+        
+          
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="/sitemap/">Sitemap</a>
+<!-- end custom footer snippets -->
+
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+      <li><a href="http://github.com/yubinwang11"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Yubin Wang. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+  <script data-goatcounter="https://yubinwang.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
