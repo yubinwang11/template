@@ -19,9 +19,9 @@ I am a Visiting Student at [Estimation, Modeling and Analysis Group](https://cem
 and [Department of Electrical and Computer Engineering](https://cemse.kaust.edu.sa/ece) at
 [King Abdullah University of Science and Technology](https://www.kaust.edu.sa/en).    
 
-I am also a research intern working in [Multi-Agent Robotic Motion Lab](https://www.marmotlab.org/) of [Department of Mechanical Engineering](https://www.eng.nus.edu.sg/me/) at [National University of Singapore](https://www.nus.edu.sg/).          
+I was also a research intern working in [Multi-Agent Robotic Motion Lab](https://www.marmotlab.org/) of [Department of Mechanical Engineering](https://www.eng.nus.edu.sg/me/) at [National University of Singapore](https://www.nus.edu.sg/).          
           
-I will obtain my B.Eng in Automation in Jun. 2022 at [Northeastern University](https://www.neu.edu.cn/). I also work closely with [Prof. Fei Chen](https://ancl.com.cn/) from [State Key Laboratory of Synthetical Automation for Process Industries](http://www.sapi.neu.edu.cn/) at [Northeastern University](https://www.neu.edu.cn/) in China.
+I will obtain my B.Eng in Automation in Jun. 2022 at [Northeastern University](https://www.neu.edu.cn/). I also worked closely with [Prof. Fei Chen](https://ancl.com.cn/) from [State Key Laboratory of Synthetical Automation for Process Industries](http://www.sapi.neu.edu.cn/) at [Northeastern University](https://www.neu.edu.cn/) in China.
 
 # Previous Position
 Teaching Assistant, [Nonlinear Systems](https://ancl.com.cn/nonlSyst.html), [Northeastern University](https://www.neu.edu.cn/), Mar.2021 - Jul.2021 

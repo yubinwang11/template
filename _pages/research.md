@@ -16,7 +16,7 @@ My ongoing work at EMANG @ KAUST is focused on learning-based observer design to
     <img src="/images/research/Model Structure.png" width="50%"/><img src="/images/research/errors.jpg" width="50%"/>
 </center>
 
-Recently, I am figuring out the rubust learning-based observer for nonlinear systems with model uncertainty. Please keep your eyes on this if you're interested.
+Recently, I am figuring out the advanced learning-based observer for nonlinear systems. Please keep your eyes on this if you're interested.
 
 ## Multi-Agent Reinforcement Learning
 My work at MARMot @ NUS was releted to evader-puruit game via Multi-Agent Reinforcement Learning with communication. This implementation was on the basis of OpenAI Gym and MPE. The mission of pursuers is to cage the evader via multi-agent colaboration, to ensure the evader cannot escape from cage for enough long time in the bounded world. Please note the policy of evder is not greedy but trained which means the evader is smart enough to plan the best evadision route. The learning framework and algorithm is MAAC from our friends @ USC.
