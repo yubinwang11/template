@@ -10,6 +10,7 @@ redirect_from:
 Welcome to my homespage! I am seeking 22Fall Ms/Ph.D Position in Control and Learning, please do not hesitate to drop me an email if you are intersted in me.
    
 # News
+Nov.2021, Received the offer of Msc in Machine Learning at [Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)](https://mbzuai.ac.ae/) and considering where to go :-D 
 
 Jun.2021, I am taking an exciting journey at [Estimation, Modeling and Analysis Group](https://cemse.kaust.edu.sa/emang) at [King Abdullah University of Science and Technology](https://www.kaust.edu.sa/en) as a visiting student and this visit will last for half one year. Thanks a lot for the host of Prof. Meriem!
 
